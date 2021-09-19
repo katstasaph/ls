@@ -4,8 +4,6 @@ PROMPTS = YAML.load_file('loancalc_prompts.yml')
 # The regex will match all input that meets the following criteria:
 # At least one digit in the string
 # Any number of digits containing at most one decimal point
-# At most 2 digits after the decimal point
-# The method will return false if these criteria are not met.
 def valid_float?(input)
   /\d/.match(input) && /^\d*\.?\d*$/.match(input) && input.to_f > 0
 end
