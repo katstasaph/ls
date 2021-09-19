@@ -1,0 +1,27 @@
+
+intro: |-
+    This calculator will show you the monthly payment on a loan given:
+       The amount of the loan, in dollars
+       The duration of the loan, in either years or months
+       The annual percentage rate, or APR
+loan_initial: Please enter the amount of your loan, in dollars.
+loan_reformat: The loan total must be a valid dollar amount.
+loan_reentry: Please re-enter your loan amount.
+
+apr_initial: Please enter the annual percentage rate, or APR, of interest on your loan.
+apr_reformat: The APR must be a valid percentage.
+apr_reentry: Please re-enter your annual percentage rate.
+
+initial_duration: |-
+    Would you like to enter your loan duration in months or years?
+       Enter 1 for months or 2 for years.
+specific_duration: 'Please enter your loan duration in %{type}.'
+duration_reformat: Please enter a positive integer.
+duration_reentry: 'Please re-enter your loan duration in %{type}.'
+
+confirm_input: 'You have entered: %{input}. Is this correct? Y/N'
+yesno: Please enter yes or no.
+onetwo: Please enter 1 for months or 2 for years.
+
+again: Perform another calculation? Y/N
+end: Good luck.
