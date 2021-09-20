@@ -1,7 +1,8 @@
 require 'yaml'
 PROMPTS = YAML.load_file('loancalc_prompts.yml')
-YES_INPUT = ["yes", "y"]
-NO_INPUT =  ["no", "n"]
+VALID_YES_INPUT = ["yes", "y"]
+VALID_NO_INPUT =  ["no", "n"]
+VALID_DURATION_INPUT = ["1", "2", "months", "years"]
 
 # The regex will match all input that meets the following criteria:
 # At least one digit in the string
@@ -43,11 +44,11 @@ def prompt_yes_or_no
 end
 
 def yes?(input)
-  YES_INPUT.include?(input)
+  VALID_YES_INPUT.include?(input)
 end
 
 def no?(input)
-  NO_INPUT.include?(input)
+  VALID_NO_INPUT.include?(input)
 end
 
 def get_loan_amount
@@ -95,7 +96,7 @@ def get_duration(duration_type)
       next
     end
     confirmation = confirm_user_input(duration_input + " #{duration_type}")
-    break if confirmation == "y" || confirmation == "yes"
+    break if yes?(confirmation)
     prompt format(PROMPTS["duration_reentry"], type: duration_type)
   end
   clear_screen
@@ -107,7 +108,7 @@ def prompt_duration_type
   prompt PROMPTS["initial_duration"]
   loop do
     duration_input = gets.chomp
-    break if ["1", "2", "months", "years"].include? duration_input
+    break if VALID_DURATION_INPUT.include? duration_input
     prompt PROMPTS["onetwo"]
   end
   if duration_input == "1"
