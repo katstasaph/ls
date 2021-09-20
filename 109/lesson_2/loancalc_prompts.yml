@@ -5,7 +5,7 @@ intro: |-
        The duration of the loan, in either years or months
        The annual percentage rate, or APR
 loan_initial: Please enter the amount of your loan, in dollars.
-loan_reformat: The loan total must be a valid dollar amount.
+loan_reformat: The loan total must be a valid dollar amount, to two decimal places.
 loan_reentry: Please re-enter your loan amount.
 
 apr_initial: Please enter the annual percentage rate, or APR, of interest on your loan.

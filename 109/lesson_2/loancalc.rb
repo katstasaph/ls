@@ -1,15 +1,18 @@
 require 'yaml'
 PROMPTS = YAML.load_file('loancalc_prompts.yml')
+YES_INPUT = ["yes", "y"]
+NO_INPUT =  ["no", "n"]
 
 # The regex will match all input that meets the following criteria:
 # At least one digit in the string
 # Any number of digits containing at most one decimal point
+# Exactly two digits after the decimal, if one is present
 def valid_float?(input)
-  /\d/.match(input) && /^\d*\.?\d*$/.match(input) && input.to_f > 0
+  (/^\d*+\.?+\d{0,2}/.match(input)).to_s == input && input.to_f > 0
 end
 
 def valid_positive_int?(input)
-  input.to_i.to_s == input && input.to_i != 0
+  input.to_i.to_s == input && input.to_i > 0
 end
 
 def zero?(input)
@@ -40,13 +43,11 @@ def prompt_yes_or_no
 end
 
 def yes?(input)
-  accepted_inputs = ["y", "yes"]
-  accepted_inputs.include?(input)
+  YES_INPUT.include?(input)
 end
 
 def no?(input)
-  accepted_inputs = ["n", "no"]
-  accepted_inputs.include?(input)
+  NO_INPUT.include?(input)
 end
 
 def get_loan_amount
@@ -59,7 +60,7 @@ def get_loan_amount
       prompt PROMPTS["loan_reformat"]
       next
     end
-    confirmation = confirm_user_input("$" + loan_amount)
+    confirmation = confirm_user_input("$" + show_as_dollars(loan_amount.to_f))
     break if yes?(confirmation)
     prompt PROMPTS["loan_reentry"]
   end
@@ -164,7 +165,7 @@ def show_loan_info(data)
   interest = zero?(apr) ? 0 : compute_total_interest(payment, loan_amount)
 
   prompt "Your monthly payment will be: " \
-             "#{show_as_dollars(monthly_payment)}.\n" \
+             "$#{show_as_dollars(monthly_payment)}.\n" \
              "   After #{duration} months, you will have paid: " \
              "$#{show_as_dollars(payment)}.\n" \
              "   The total interest accrued will be: " \
