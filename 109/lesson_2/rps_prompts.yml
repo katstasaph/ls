@@ -1,0 +1,61 @@
+intro: |-
+    Welcome to Rock Paper Scissors Spock Lizard.
+      Read the rules? (Y)es (N)o
+rules: |+
+    During each round, you first choose a play from the following:
+         (R)ock (P)aper (S)cissors (Sp)ock (L)izard
+         
+       The computer will then choose its play.
+    
+       Each play beats and is beaten by two others:
+         Rock beats scissors and lizard
+         Paper beats rock and Spock
+         Scissors beats paper and lizard
+         Lizard beats paper and Spock
+         Spock beats rock and scissors
+      
+       If both plays are the same, the round is a tie.
+    
+       You score one point for each win and 0 points for ties.
+       The first player to reach the victory total wins.
+       There are achievements to be won. Experiment!
+    
+       Type "rules" at any time to reread these rules.
+       Type "stats" at any time to see your game stats and achievements.
+    
+anykey: Press any key to continue.
+yesno: Please enter yes or no.
+victory: How many points would you like to play to?
+invalid_int: Please enter a positive number.
+reenter: Please enter R for rock, P for paper, SC for scissors, SP for Spock, or L for lizard.
+noneyet: None yet!
+
+total_rounds: "Total rounds: %{rounds}."
+total_moves: |-
+  Rocks played: %{rock}.
+     Papers played: %{paper}.
+     Scissors played: %{scissors}.
+     Spocks played: %{spock}.
+     Lizards played: %{lizard}.
+    
+your_moves: "Your last moves: %{moves}."
+computer_moves: "Computer's last moves: %{moves}.\n\n"
+
+achievements: |-
+                    Achievements unlocked:
+unlocked: "Achievement unlocked! "
+achievement_rock: "UP TO ELEVEN: Play %{total} Rocks in one game."
+achievement_paper: "WASTEBASKET: Play %{total} Papers in one game."
+achievement_scissors: "STUDYING THE BLADE: Play %{total} Scissors in one game."
+achievement_spock: "VULCANIZED: Play %{total} Spocks in one game."
+achievement_lizard: "AMPHIBIOUS: Play %{total} Lizards in one game."
+achievement_hubris: "GAMBLER'S HUBRIS: Win %{total} rounds in a row."
+achievement_fallacy: "GAMBLER'S FALLACY: Lose %{total} rounds in a row."
+achievement_tension: "DRAMATIC TENSION: Tie %{total} rounds in a row."
+achievement_time: "OVERTIME: Play %{total} rounds in one game."
+
+current_round: "Round %{round}!\n"
+playing_to: "Playing to: %{total} wins.\n\n"
+select_move: 'Choose one: (R)ock (P)aper (Sc)issors (Sp)ock (L)izard'
+restart: Play again? Y/N
+end: Goodbye!
