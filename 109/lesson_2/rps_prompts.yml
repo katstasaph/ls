@@ -23,7 +23,7 @@ rules: |+
        Type "rules" at any time to reread these rules.
        Type "stats" at any time to see your game stats and achievements.
     
-anykey: Press any key to continue.
+enter: Press Enter to continue.
 yesno: Please enter yes or no.
 victory: How many points would you like to play to?
 invalid_int: Please enter a positive number.

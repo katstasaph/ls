@@ -63,7 +63,7 @@ end
 def show_rules
   clear_screen
   prompt PROMPTS["rules"]
-  prompt PROMPTS["anykey"]
+  prompt PROMPTS["enter"]
   gets
   clear_screen
 end
@@ -76,7 +76,7 @@ def show_stats(stats)
   show_move_stats(stats)
   show_achievements(stats)
 
-  prompt PROMPTS["anykey"]
+  prompt PROMPTS["enter"]
   gets
   clear_screen
 end
