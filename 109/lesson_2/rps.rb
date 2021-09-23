@@ -15,8 +15,8 @@ WINNERS = {
     "scissors" => ["breaks", "cracks", "smashes"]
   },
   scissors: {
-    "lizard" => ["beheads", "disembowels", "eviscerates"],
-    "paper" => ["cuts", "shreds", "snips"]
+    "lizard" => ["behead", "disembowel", "eviscerate"],
+    "paper" => ["cut", "shred", "snip"]
   },
   paper: {
     "rock" => ["covers", "hides", "smothers"],
@@ -43,7 +43,7 @@ end
 def prompt_yes_or_no
   input = nil
   loop do
-    input = gets.chomp.downcase.gsub(/\./, '')
+    input = gets.strip.downcase.gsub(/\./, '')
     break if yes?(input) || no?(input)
     prompt PROMPTS["yesno"]
   end
@@ -144,7 +144,7 @@ def get_victory_total
   total = nil
   prompt PROMPTS["victory"]
   loop do
-    total = gets.chomp
+    total = gets.strip
     break if valid_positive_int?(total)
     prompt PROMPTS["invalid_int"]
   end
@@ -176,14 +176,14 @@ end
 def parse_player_move(stats)
   input = nil
   loop do
-    input = gets.chomp.downcase
+    input = gets.strip.downcase
     if handle_special_commands(input, stats)
       next
     end
     break if valid_move?(input)
     prompt PROMPTS["reenter"]
   end
-  convert_abbreviation(input)
+  convert_move_name(input)
 end
 
 def handle_special_commands(input, stats)
@@ -205,9 +205,12 @@ def valid_move?(input)
   ALIASES.keys.include?(input.to_sym) || ALIASES.values.include?(input)
 end
 
-def convert_abbreviation(input)
-  input = input.to_sym
-  ALIASES[input]
+def convert_move_name(input)
+  if ALIASES.keys.include?(input.to_sym)
+    ALIASES[input.to_sym]
+  else
+    input
+  end
 end
 
 def get_computer_move
@@ -360,6 +363,7 @@ def play_game(scores, stats)
   reset_stats!(stats)
   total = get_victory_total.to_i
   run_game(scores, stats, total)
+  print_endgame_message(scores, total)
 end
 
 def run_game(scores, stats, total)
@@ -378,13 +382,13 @@ def run_game(scores, stats, total)
     update_stats!(stats, player_move, computer_move)
 
     print_victory_message(player_move, computer_move, outcome)
-    handle_post_round(scores, stats)
+    handle_post_round!(scores, stats)
 
     round += 1
   end
 end
 
-def handle_post_round(scores, stats)
+def handle_post_round!(scores, stats)
   print_score(scores)
   handle_achievements!(stats)
 end
@@ -392,6 +396,14 @@ end
 def handle_achievements!(stats)
   update_all_achievements!(stats)
   unlock_achievements!(stats)
+end
+
+def print_endgame_message(scores, total)
+  if scores[:player] >= total
+    prompt PROMPTS["endgame_win"]
+  elsif scores[:computer] >= total
+    prompt PROMPTS["endgame_loss"]
+  end
 end
 
 def play_again?

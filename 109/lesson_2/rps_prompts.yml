@@ -57,5 +57,7 @@ achievement_time: "OVERTIME: Play %{total} rounds in one game."
 current_round: "Round %{round}!\n"
 playing_to: "Playing to: %{total} wins.\n\n"
 select_move: 'Choose one: (R)ock (P)aper (Sc)issors (Sp)ock (L)izard'
+endgame_win: "Congratulations, you won this match!"
+endgame_loss: "You lost this match."
 restart: Play again? Y/N
 end: Goodbye!
