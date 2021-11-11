@@ -1,0 +1,27 @@
+#.1) As numbers.uniq does not mutate the array and the return value is not assigned to numbers, puts numbers will print the following:
+# 1
+# 2
+# 2
+# 4
+
+# 2) ! and ? are used both as syntax and as part of method names:
+# != is the equality operator for "not equals."
+# ! before something, e.g. !user_name is a boolean operator that returns the opposite of the expression, and will return false as long as it is not in front of something falsy, e.g., !!nil.
+# ! after something, e.g., words.uniq! is part of the method name, and a stylistic convention indicating the method is destructive.
+# ? before something is generally part of the ternary operator ? :.
+# ? after something, e.g., words? is part of the method name, and a stylistic convention indicating the method returns a boolean value.
+# !! before something, e.g., !!user_name returns the boolean opposite of the boolean opposite, and will return true as long as it is not in front of something falsy, e.g., !!nil.
+
+# 3) advice.gsub!("important", "urgent")
+
+# 4) numbers.delete_at(1) will delete the array value at index 1; numbers will now be [1, 3, 4, 5], and the return value will be the removed element, 2.
+# numbers_delete(1) will delete all instances of the element 1; numbers will now be [2, 3, 4, 5], and the return value will be the removed element 1 (regardless of whether one or multiple instances were removed).
+
+# 5) (10..100).cover?(42)
+
+# 6) Use "Four score and " + famous_words ...
+# or famous_words.prepend("Four score and ")
+
+# 7) flintstones.flatten!
+
+# 8) flintstones.assoc("Barney")

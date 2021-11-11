@@ -1,0 +1,94 @@
+# 1.
+# arr.sort do |a,b|
+  # b.to_i <=> a.to_i
+# end
+
+# 2. 
+# books.sort do |a, b|
+#   a[:published] <=> b[:published]
+# end
+
+# 3a. arr1[2][1][3]
+# 3b. arr2[:third][0]
+# 3c. arr3[2][:third][0][0]
+# 3d. hsh1["b"][1]
+# 3e. hsh2[:third].key(0)
+
+# 4a. arr1[1][1] = 4
+# 4b. arr2[2] = 4
+# 4c. hsh1[:first][2][0] = 4
+# 4d. hsh2[["a"]][:a][2] = 4
+
+# 5.
+# male_hashes = munsters.values.select { |hsh| hsh["gender"] == "male" }
+# ages = male_hashes.each_with_object([]) { |hsh, arr| arr << hsh["age"] }
+# ages.inject(:+)
+
+# 6. 
+# munsters.each do |key, value|
+#   puts "#{key} is a #{value["age"]}-year-old #{value["gender"]}."
+# end
+
+# 8.
+# VOWELS = ["a", "e", "i", "o", "u"]
+
+# hsh.each do |_, value|
+  # value.each do |str|
+    # str.each_char { |c| puts c if VOWELS.include?(c) }
+  # end
+# end
+
+# 9. 
+# arr.map do |subarr|
+#   subarr.sort { |a, b| b <=> a }
+# end
+
+# 10.
+# test = arr.map do |hsh|
+#   hsh.transform_values { |val| val += 1 }
+# end
+
+# 11.
+# arr.map do |subarr| 
+#   subarr.select { |num| num % 3 == 0 }
+# end
+
+# 12.
+# arr.each_with_object({}) { |subarr, hsh| hsh[subarr[0]] = subarr[1] }
+
+# 13.
+# arr.sort_by do |subarr|
+#   subarr.select { |num| num.odd? }
+# end
+
+# 14. 
+# hsh.values.each_with_object([]) do |hsh, arr| 
+#   element = hsh[:type] == "fruit" ? hsh[:colors].map { |clr| clr.capitalize } : hsh[:size].upcase
+#   arr << element
+# end
+
+# 15.
+# odds = arr.reject do |hsh| 
+  # hsh.any? do |_, value|
+    # value.any? { |n| n.odd? }
+  # end
+# end 
+
+# 16.
+# HEXADECIMALS = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"]
+# def generate_uuid()
+  # 8.times do 
+    # print HEXADECIMALS.sample
+  # end
+  # print "-"
+  # 3.times do
+    # 4.times do
+      # print HEXADECIMALS.sample
+    # end
+    # print "-"
+  # end
+  # 12.times do
+    # print HEXADECIMALS.sample
+  # end
+  # print "\n"
+# end

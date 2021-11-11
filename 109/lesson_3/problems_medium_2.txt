@@ -1,0 +1,25 @@
+# 1)  Going through each group of statements in order: 
+# First we assign the variable and print the object's value, along with its ID.
+# We are inside the block. Assigning a_outer.object_id to the variable a_outer_id does not change the value of a_outer nor does it change its ID. 
+# Now we reassign a_outer, b_outer, c_outer, d_outer. These are now new objects with new IDs, even though the variable names in the code are the same.
+# a_inner, b_inner, c_inner, d_inner refer to the new objects we just created and thus have the same values and IDs.
+# a_outer, b_outer, c_outer, d_outer still refer to the new objects and the new object IDs. a_outer_id retains the old ID.
+# This produces an exception since a_inner, etc. have no meaning outside the block, and we rescue that exception.
+
+# 2) Going through each group of statements in order again:
+# As with question 1, we assign the variables and print the object's value and ID.
+# We now call an_illustrative_method. Even though the variables are different inside the method, they have the same value and thus the objects are reused.
+# We reassign the variables within the method, and they take on new values and new object IDs, as before.
+# As before, a_inner, etc. have the same values and IDs. 
+# However, after the method returns, a_outer, etc. do not refer to the new objects, as the objects were not passed as parameters -- only their values.
+# As before, a_inner, etc. have no meaning outside the method, and an exception is produced and rescued.
+
+# 3) The string will be unchanged, but the array will now have two elements.
+# This is because the String#+= method reassigns the variable, and thus a new object is created. The old object remains unchanged.
+# The Array#<< method, however, does not create a new object. It appends the new element to the old object, and the array will be changed by the method call.
+
+# 4) This example demonstrates that the above results are not unique to strings and arrays; we can achieve a similar (but reversed) effect with String#<< and Array#=.
+
+# 5) We can make the code clearer by specifying explicit return values.
+
+# 6) The if/else statement is redundant here; color == "blue" || color == "green" is already evaluating to true or false, so we can just return the result of that.

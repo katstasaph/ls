@@ -1,0 +1,9 @@
+# 1) greeting in this case will be nil. The assignment in the if false block will never happen, but greeting will be initialized to nil.
+
+# 2) The value of the hash key will now be "hi there"; as informal_greeting is pointing to the key's value, when you call the mutating String#<< method on it, it will alter that value in greetings.
+
+# 3a) The values will remain "one" "two" "three", as reassignment in the method does not alter the values of the variables outside it.
+# 3b) Again, the values will remain "one" "two" "three", as we are still reassigning within the method.
+# 3c) The String#gsub! method does mutate the variable, as opposed to earlier examples, and so the values will now be "two", "three", "one".
+
+# 4) To fix the code we can use early return. Specifically we want to return false if dot_separated_words.size == 4, and also return false if is_an_ip_number? returns false on any iteration. 

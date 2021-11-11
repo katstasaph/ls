@@ -1,0 +1,24 @@
+# 1) ages.include?("Spot") will return true if "Spot" is a key in the hash ages. Other methods to do this include ages.key?("Spot") and ages.member?("Spot"). To check whether "Spot" is a value, use ages.has_value?("spot")
+
+# 2a) munsters_description.swapcase!
+# 2b) munsters_description.capitalize!
+# 2c) munsters_description.downcase!
+# 2d) munsters_description.upcase!
+
+# 3) ages.merge!(additional_ages)
+
+# 4) advice.include?("Dino")
+# There are a number of things you can do to see whether "Dino" is included as a separate word; you could use String#split (perhaps stripping end punctuation depending on use case) or insert spaces before and after Dino i.e., " Dino " -- this solution assumes these spaces will be present, but in running text that is often the case.
+
+# 5) flintstones = %w(Fred Barney Wilma Betty BamBam Pebbles)
+
+# 6) flintstones.push("Dino")
+
+# 7) flintstones.push("Dino", "Hoppy")
+
+# 8) advice.slice!(0, 39)
+# Using the non-destructive String#slice method would also return the string "Few things in life are as important as " but leave the advice variable unchanged.
+
+# 9) statement.count("t")
+
+# 10) title.center(40)

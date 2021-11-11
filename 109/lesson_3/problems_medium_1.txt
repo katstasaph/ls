@@ -1,0 +1,29 @@
+# 1) (0..9).each { |index| puts (" " * index) + "The Flintstones rock!" }
+
+# 2) This statement will produce an error since the result of 40 + 2 is an Integer, and you cannot add an Integer to a String.
+# You can fix this by using the to_s method, i.e., (40 + 2).to_s, or by interpolating the value within the string, i.e., "the value of 40 + 2 is #{40 + 2}".
+
+# 3) You can use a simple loop with a break statement:
+#  loop do
+#    break if divisor <= 0
+#    factors << number / divisor if number % divisor == 0
+#    divisor -= 1
+#  end
+# Bonus 1: Given numbers x, y, y is a factor of x if and only if it can be evenly divided into x. The modulo operator checks whether this is the case.
+# Bonus 2: The final "factors" means the method will return the factors array; otherwise the method will return nil.
+
+# 4) The << operator will modify the array buffer, and the + operator will not.
+
+# 5) limit is a local variable, and not in scope of the method. You can fix this by changing the method to take limit as an argument, or by defining the limit as a constant instead, i.e., LIMIT = 15.
+# (Note that defining LIMIT as a constant is only advised if you do not plan on changing its value during runtime.)
+
+# 6) The output is 34 -- you are printing the value of number, and the mess_with_it method does not alter the value of number nor is its return value assigned to number.
+
+# 7) The data did get ransacked, since the mess_with_demographics is destructive and thus altered the values of munsters.
+
+# 8) The return value of rps(rps(rps("rock", "paper"), rps("rock", "scissors")), "rock") will be paper:
+# First evaluate rps("rock", "paper") and rps("rock", "scissors"), which will return "paper" and "rock" respectively.
+# The next call will then be rps("paper", "rock") which will return "paper".
+# The next call will also be rps("paper", "rock") and will return "paper".
+
+# 9) The return value will be "no". Calling foo will return "yes" no matter what; thus bar is called on "yes" and returns "no".
