@@ -271,29 +271,30 @@ end
 # Player's turn
 
 def do_player_turn!(board_state)
-  choice = nil
+  input = nil
   print_board(board_state)
   prompt PROMPTS["yourturn"]
   prompt format(PROMPTS["move"], squares: list_open_squares(board_state))
   loop do
-    choice = gets.strip.to_i
-    break if valid_choice?(choice, board_state)
-    puts input_error(choice, board_state)
+    input = gets.strip
+    break if valid_choice?(input, board_state)
+    puts input_error(input, board_state)
   end
+  choice = input.to_i
   board_state[choice] = PLAYER_SYMBOL
   choice
 end
 
 def valid_choice?(input, board_state)
-  !(invalid_square?(input) || square_taken?(input, board_state))
+  valid_square?(input) && square_empty?(input.to_i, board_state)
 end
 
-def invalid_square?(input)
-  !SQUARE_INPUT.include?(input)
+def valid_square?(input)
+  valid_positive_int?(input) && SQUARE_INPUT.include?(input.to_i)
 end
 
-def square_taken?(square, board_state)
-  board_state[square] != NO_SYMBOL
+def square_empty?(square, board_state)
+  board_state[square] == NO_SYMBOL
 end
 
 def available_squares(board_state)
@@ -301,7 +302,7 @@ def available_squares(board_state)
 end
 
 def input_error(input, board_state)
-  if invalid_square?(input)
+  if not valid_square?(input)
     prompt format(PROMPTS["nonum"], squares: list_open_squares(board_state))
   else
     prompt format(PROMPTS["taken"], squares: list_open_squares(board_state))
