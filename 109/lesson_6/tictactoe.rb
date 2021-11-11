@@ -325,7 +325,7 @@ def do_computer_turn!(board_state, game_state)
   print_board(board_state)
   square =
     case game_state[:difficulty]
-    when "beginnner" then easy_strategy(board_state)
+    when "beginner" then easy_strategy(board_state)
     when "advanced" then advanced_strategy(board_state)
     else minimax(board_state)[1]
     end
