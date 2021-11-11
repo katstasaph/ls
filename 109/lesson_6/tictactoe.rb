@@ -45,8 +45,8 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def prompt_anykey
-  prompt PROMPTS["anykey"]
+def prompt_enter
+  prompt PROMPTS["enter"]
   gets
 end
 
@@ -208,16 +208,16 @@ def show_rules(board_state)
   clear_screen
   prompt PROMPTS["rules_intro"]
   print_board(board_state)
-  prompt_anykey
+  prompt_enter
   clear_screen
   prompt PROMPTS["rules_end"]
-  prompt_anykey
+  prompt_enter
 end
 
 def run_game!(board_state, game_state)
   current_player = assign_first_player(game_state)
   run_round!(board_state, game_state, current_player)
-  prompt_anykey
+  prompt_enter
 end
 
 def run_round!(board_state, game_state, current_player)
@@ -317,7 +317,7 @@ def end_turn(board_state, player, move)
     prompt format(PROMPTS["comp_move"], movenum: move)
   end
   print_board(board_state)
-  prompt_anykey
+  prompt_enter
 end
 
 # Computer's turn
@@ -465,7 +465,7 @@ end
 def print_current_score(game_state)
   prompt format(PROMPTS["you_score"], score: game_state[:you_score])
   prompt format(PROMPTS["comp_score"], score: game_state[:comp_score])
-  prompt_anykey
+  prompt_enter
 end
 
 def do_round_end(board_state, game_state)

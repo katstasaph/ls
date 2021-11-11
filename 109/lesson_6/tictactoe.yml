@@ -10,7 +10,7 @@ rules_end: |+
           If the board becomes full before anyone gets 3 squares in a row, 
           the round ends in a tie.
           
-anykey: Press any key to continue.
+enter: Press Enter to continue.
 yesno: Please enter yes or no.
 
 victory: How many points do you want to play to?
