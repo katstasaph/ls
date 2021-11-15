@@ -2,15 +2,7 @@ require 'yaml'
 
 # Board constants
 
-TOP_LEFT = 1
-TOP_MIDDLE = 2
-TOP_RIGHT = 3
-MIDDLE_LEFT = 4
 MIDDLE = 5
-MIDDLE_RIGHT = 6
-BOTTOM_LEFT = 7
-BOTTOM_MIDDLE = 8
-BOTTOM_RIGHT = 9
 
 DIVIDER_ROW = "-----------"
 FILLER_ROW = "   |   |   "
@@ -124,7 +116,7 @@ end
 
 # Initializing settings
 
-def initialize_settings!(settings)
+def initialize_settings(settings)
   initialize_difficulty!(settings)
   initialize_rounds!(settings)
   initialize_scores!(settings)
@@ -191,12 +183,12 @@ end
 # Game loop
 
 def play_game(board_state, game_state)
-  initialize_settings!(game_state)
+  initialize_settings(game_state)
   clear_screen
-  run_game!(board_state, game_state)
+  run_game(board_state, game_state)
 end
 
-def introduce_game!(board_state)
+def introduce_game(board_state)
   clear_screen
   initialize_preview_board!(board_state)
   prompt PROMPTS["intro"]
@@ -214,18 +206,18 @@ def show_rules(board_state)
   prompt_enter
 end
 
-def run_game!(board_state, game_state)
+def run_game(board_state, game_state)
   current_player = assign_first_player(game_state)
-  run_round!(board_state, game_state, current_player)
+  run_round(board_state, game_state, current_player)
   prompt_enter
 end
 
-def run_round!(board_state, game_state, current_player)
+def run_round(board_state, game_state, current_player)
   loop do
     clear_board!(board_state)
     introduce_round!(game_state)
     loop do
-      do_turn!(current_player, board_state, game_state)
+      do_turn(current_player, board_state, game_state)
       break if round_over?(board_state)
       current_player = switch_player(current_player)
     end
@@ -241,7 +233,7 @@ def introduce_round!(game_state)
   prompt format(PROMPTS["current_round"], round: game_state[:current_round])
 end
 
-def do_turn!(player, board_state, game_state)
+def do_turn(player, board_state, game_state)
   move = nil
   if player == "player"
     move = do_player_turn!(board_state)
@@ -302,7 +294,7 @@ def available_squares(board_state)
 end
 
 def input_error(input, board_state)
-  if not valid_square?(input)
+  if !valid_square?(input)
     prompt format(PROMPTS["nonum"], squares: list_open_squares(board_state))
   else
     prompt format(PROMPTS["taken"], squares: list_open_squares(board_state))
@@ -342,28 +334,18 @@ end
 
 def advanced_strategy(board_state)
   square = nil
-  if board_state[5] == NO_SYMBOL then square = 5 end
-  if !square then square = offense_strategy(board_state) end
-  if !square then square = defense_strategy(board_state) end
+  if board_state[MIDDLE] == NO_SYMBOL then square = MIDDLE end
+  if !square then square = find_critical_move(board_state, COMP_SYMBOL) end
+  if !square then square = find_critical_move(board_state, PLAYER_SYMBOL) end
   if !square then square = available_squares(board_state).sample end
   square
 end
 
-def offense_strategy(board_state)
+def find_critical_move(board_state, symbol)
   square = nil
   WINNING_LINES.each do |line|
     squares_to_check = board_state.select { |key, _| line.include?(key) }
-    square = detect_vulnerable_square(squares_to_check, COMP_SYMBOL)
-    break if !!square
-  end
-  square
-end
-
-def defense_strategy(board_state)
-  square = nil
-  WINNING_LINES.each do |line|
-    squares_to_check = board_state.select { |key, _| line.include?(key) }
-    square = detect_vulnerable_square(squares_to_check, PLAYER_SYMBOL)
+    square = detect_vulnerable_square(squares_to_check, symbol)
     break if !!square
   end
   square
@@ -398,14 +380,10 @@ def minimax(
       else
         minimax(new_state, !max_turn, (depth + 1), alpha, beta)[0]
       end
-    if max_turn && new_score > best_score
+    if better_move_found?(max_turn, new_score, best_score)
       best_score = new_score
       best_move = square
-      alpha = best_score
-    elsif !max_turn && new_score < best_score
-      best_score = new_score
-      best_move = square
-      beta = best_score
+      max_turn ? alpha = best_score : beta = best_score
     end
     break if alpha > beta
   end
@@ -415,6 +393,10 @@ end
 # rubocop: enable Metrics/CyclomaticComplexity
 # rubocop: enable Metrics/PerceivedComplexity
 # rubocop: enable Metrics/MethodLength
+
+def better_move_found?(max_turn, new_score, best_score)
+  (max_turn && new_score > best_score) || (!max_turn && new_score < best_score)
+end
 
 def end_score(board, depth)
   case detect_winner(board)
@@ -504,7 +486,7 @@ game_state = {
 
 board_state = {}
 
-introduce_game!(board_state)
+introduce_game(board_state)
 loop do
   play_game(board_state, game_state)
   print_match_winner(game_state)
