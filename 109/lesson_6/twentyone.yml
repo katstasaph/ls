@@ -1,13 +1,12 @@
 intro: |-
     Welcome to Twenty-One!
        Read the rules? (Y)es (N)o
-rules_intro: "Twenty-One is based on the casino game Blackjack.\n\n"
-rules_goal: |+
-        The goal of Twenty-One is to beat the dealer by drawing a hand whose value 
-           is as close as possible to #{score}, but no more.
+rules_intro: "Twenty-One is based on the casino game Blackjack. Can you beat the house?"
+rules_goal: "The goal: bring your hand's value as close as possible to %{score}, but no more.\n\n"
            
 rules_score: |+         
-       Cards 2 through 10 of a suit are worth their face value.
+       Hand scoring:
+          Cards 2 through 10 of a suit are worth their face value.
           Jacks, Queens, and Kings are worth 10 points.
           
 rules_aces: "An Ace is worth 10 points, unless that would put your total points above %{score}."
