@@ -1,0 +1,72 @@
+intro: |-
+    Welcome to Twenty-One!
+       Read the rules? (Y)es (N)o
+rules_intro: "Twenty-One is based on the casino game Blackjack.\n\n"
+rules_goal: |+
+        The goal of Twenty-One is to beat the dealer by drawing a hand whose value 
+           is as close as possible to #{score}, but no more.
+           
+rules_score: |+         
+       Cards 2 through 10 of a suit are worth their face value.
+          Jacks, Queens, and Kings are worth 10 points.
+          
+rules_aces: "An Ace is worth 10 points, unless that would put your total points above %{score}."
+rules_aces2: "If so, the Ace is worth 1 point.\n\n"
+
+rules_chips: "You begin with %{chips} chips.\n\n"
+rules_game: |+         
+       Before each round, you may bet any amount of chips up to your total.
+          Then, both you and the dealer are dealt two cards each.
+          You can see both of your cards, but only one of the dealer's cards.
+
+rules_moves: "If your initial draw is worth #{score} points, you win the round."
+
+rules_moves2: |+
+           Otherwise, after viewing both hands, choose a move:
+       
+               Hit: Draw one more card.
+               Stay: Don't draw any more cards, just proceed to the showdown.
+               Double down: Double your bet, draw one more card, proceed to the showdown.
+               (You can't double down after hitting or if you don't have enough chips.)
+          
+             The dealer then chooses either to hit or stay.   
+
+rules_winning: "If you reach exactly %{score} points, you win."
+rules_winning2: |+
+          If the dealer does, they win.
+            
+             If you go over, it's a bust and you lose. 
+             If the dealer goes over, they lose.
+       
+             Otherwise, once both you and the dealer have stayed, you show your hands.
+             The player with the higher total wins.
+             In the case of a tie, your chips are refunded.
+          
+             If you run out of chips, you lose the match.
+      
+enter: Press Enter to continue.
+yesno: Please enter yes or no.
+invalid: Invalid input.
+
+howmanychips: "How many chips would you like to play to? You start with %{chips}."
+invalid_int: Please enter a positive whole number.
+toolow: "Please enter a number higher than %{chips}."
+bet: How many chips would you like to bet?
+toohigh: You can't bet more chips than you have!
+
+newround: It's a new round!
+hands: "Your hands:\n\n"
+moves: Would you like to (H)it or (S)tay?
+moves_double: Would you like to (H)it, (S)tay, or (D)ouble down?
+no_double: You can't double down right now.
+stay: You chose to stay.
+hit: You chose to hit.
+dealer_stay: Dealer chose to stay.
+dealer_hit: Dealer chose to hit.
+double: "You chose to double down! Your new bet is %{bet} chips."
+
+nochips: "Sorry, you're out of chips!\n"
+won: "You now have %{chips} chips. You win!\n\n"
+
+playagain: "Play again? (Y)es (N)o"
+end: Goodbye!
