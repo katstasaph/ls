@@ -1,0 +1,37 @@
+intro: Welcome to Rock Paper Scissors Spock Lizard.
+rules_ask: Read the rules? (Y)es (N)o    
+
+rules: |+
+    During each round, you first choose a play from the following:
+         (R)ock (P)aper (S)cissors (Sp)ock (L)izard
+         
+       The computer will then choose its play.
+       Each computer personality has a different playstyle!
+    
+       Each play beats and is beaten by two others:
+         Rock beats scissors and lizard
+         Paper beats rock and Spock
+         Scissors beats paper and lizard
+         Lizard beats paper and Spock
+         Spock beats rock and scissors
+      
+       If both plays are the same, the round is a tie.
+    
+       You score one point for each win and 0 points for ties.
+       The first player to reach the victory total wins.
+       
+    
+enter: (Press Enter to continue.)
+yesno: (Please enter yes or no.)
+name_ask: What is your name?
+score_ask: How many points would you like to play to?
+invalid_number: (Please enter a positive whole number.)
+reenter: |+ 
+    (Please enter R for rock, P for paper, SC for scissors, 
+        SP for Spock, or L for lizard.)
+
+select_move: 'Choose one: (R)ock (P)aper (Sc)issors (Sp)ock (L)izard'
+won: "Congratulations, you won this match!"
+lost: "You lost this match."
+play_again: Play again? Y/N
+end: Goodbye!
