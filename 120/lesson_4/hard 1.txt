@@ -1,0 +1,84 @@
+1. For this we would need to implement a custom getter that creates a log entry, e.g.:
+
+# class SecretFile
+  # def initialize(secret_data, log)
+    # @data = secret_data
+    # @log = SecurityLogger.new
+  # end
+  
+  # def data
+    # @log.create_log_entry
+    # @data
+  # end
+# end
+
+2 - End
+
+# Ben and Alyssa are working on a vehicle management system. So far, they have created classes called Auto and Motorcycle to represent automobiles and motorcycles. After having noticed common information and calculations they were performing for each type of vehicle, they decided to break out the commonality into a separate class called WheeledVehicle. This is what their code looks like so far:
+
+# # This new class does not fit well with the object hierarchy defined so far. Catamarans don't have tires. But we still want common code to track fuel efficiency and range. Modify the class definitions and move code into a Module, as necessary, to share code among the Catamaran and the wheeled vehicles.
+
+# module Wheels
+  # def tire_pressure(tire_index)
+    # @tires[tire_index]
+  # end
+
+  # def inflate_tire(tire_index, pressure)
+    # @tires[tire_index] = pressure
+  # end
+# end
+
+# class Vehicle
+  # attr_accessor :speed, :heading
+
+  # def initialize(fuel_efficiency, fuel_capacity)
+    # @fuel_efficiency = fuel_efficiency
+    # @fuel_capacity = fuel_capacity
+  # end
+  
+  # def range
+    # @fuel_capacity * @fuel_efficiency
+  # end
+# end
+
+# class Auto < Vehicle
+  # include Wheels
+  # attr_accessor :tires
+  # def initialize
+    # # 4 tires are various tire pressures
+    # @tires = [30,30,32,32]
+    # super(50, 25.0)
+  # end
+# end
+
+# class Motorcycle < Vehicle
+  # include Wheels
+  # attr_accessor :tires
+  # def initialize
+    # @tires = [20, 20]
+    # super(80, 8.0)
+  # end
+# end
+
+# class Boat < Vehicle
+  # attr_reader :hull_count, :propeller_count
+
+  # def initialize(num_propellers, num_hulls, fuel_efficiency, fuel_capacity)
+    # @propeller_count = num_propellers
+    # @hull_count = num_hulls
+    # super(fuel_efficiency, fuel_capacity)
+  # end
+  
+  # def range
+    # super + 10
+  # end
+# end
+
+# class Catamaran < Boat
+  # # details omitted for brevity
+# end
+
+# class Motorboat < Boat
+  # # details omitted 
+# end
+

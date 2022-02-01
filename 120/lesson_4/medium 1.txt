@@ -1,0 +1,42 @@
+1. Ben is right. Since we have provided a getter for the @balance instance variable with attr_reader, we don't need to use a @ to refer to it.
+
+2. attr_reader provides a getter and not a setter, so updating the instance variable @quantity will not work this way. We need to use attr_writer :quantity or attr_accessor :quantity.
+
+3. This might cause unexpected behavior; since we have attr_accessor, the quantity variable can be changed without calling the update_quantity method, and without checking whether the variable is greater than 0.
+
+4. 
+# class Greeting
+  # def greet(str)
+    # puts str
+  # end
+# end
+
+# class Hello < Greeting
+  # def hi
+    # greet("Hello")
+  # end
+# end
+
+# class Goodbye < Greeting
+  # def bye
+    # greet("Goodbye")
+  # end
+# end
+
+# 5.
+# class KrispyKreme
+  # attr_reader :filling_type, :glazing
+  # def initialize(filling_type, glazing)
+    # @filling_type = filling_type
+    # @glazing = glazing
+  # end
+  
+  # def to_s
+    # desc = filling_type ? filling_type : "Plain"
+    # glazing ? (desc + " with #{glazing}") : desc
+  # end
+# end
+
+6. These two snippets accomplish the same thing; however, using self is non-ideal unless required.
+
+7. The method name light_status is somewhat redundant, since we know we are dealing with instances of Light; calling it just status will still be clear.

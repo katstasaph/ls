@@ -1,0 +1,44 @@
+1. All of these are objects. We can call the method class on them to determine what classes they are respectively.
+
+2. 
+# module Speed
+  # def go_fast
+    # puts "I am a #{self.class} and going super fast!"
+  # end
+# end
+
+# class Car
+  # include Speed
+  # def go_slow
+    # puts "I am safe and driving slow."
+  # end
+# end
+
+# class Truck
+  # include Speed
+  # def go_very_slow
+    # puts "I am a heavy truck and like going very slow."
+  # end
+# end
+
+# car = Car.new
+# truck = Truck.new
+# car.go_fast
+# truck.go_fast
+
+3. We call self.class on the object. In turn the string interpolation implicitly calls to_s, which returns the name of the class.
+
+4. 
+# cat = AngryCat.new
+
+5. The Pizza class has an instance variable. The @ in @name indicates that this variable is an instance variable, not a local variable.
+
+6. We can use the built-in getter/setter: attr_accessor.
+
+7. By default calling to_s on an object returns a String with the name of the object and an encoding of its object ID. This information is found in the Ruby documentation for the Object class.
+
+8. Here self is used in an instance method, so it is referring to an instance of the object calling the method.
+
+9. This usage of self is used in a class method and refers to the class itself.
+
+10. Call the new method with two arguments, e.g., Handbag = Bag.new("red", "velvet").

@@ -1,0 +1,37 @@
+1a. "Hello" is output to the console.
+1b. An exception is raised; there is no bye method defined in the Hello class, its parent class Greeting, nor any of the default Ruby classes. There is one defined in the Goodbye class, but Hello does not inherit from this class so Ruby does not look there.
+1c. An exception is raised; there is no greet method defined in the Hello class, and while there is one defined in the Greeting class, it takes an argument, and we have not provided any.
+1d. Here we have provided an argument so "Goodbye" will be output to the console.
+1e. An exception will be raised; the hi method is an instance method, not a class method, so we cannot call it on the Hello class directly.
+
+2. We would need to do two things: change the hi method to a class method by appending self, and within that method instantiate a Greeting object on which to call greet -- otherwise we have no access to that method. This is not ideal.
+
+# class Hello
+#   def self.hi
+#     greeting = Greeting.new
+#     greeting.greet("Hello")
+#   end
+# end
+
+3. We would instantiate two objects with different arguments, e.g.:
+lion = AngryCat.new(45, "Simba")
+cheetah = AngryCat.new(60, "Frank")
+
+4. We would need to override the default to_s method by defining it as an instance method within the class. We would also need to define a getter to use in the string interpolation:
+
+# class Cat
+  # attr_reader :type
+  # def initialize(type)
+    # @type = type
+  # end
+
+  # def to_s
+    # "I am a #{type} cat."
+  # end
+# end
+
+5. self.manufacturer is a class method, while model is an instance method. So calling Television.model and tv.manufacturer will both raise exceptions.
+
+6. We can change attr_reader to attr_accessor, which will provide a setter as well as a getter and remove the need to use self.
+
+7. The return statement is redundant, as the last line of the method will be returned anyway.

@@ -1,0 +1,32 @@
+1. The code will not output anything to the console. However, the last line of code will return a string; it calls the instance method predict_the_future, which in turn calls the instance method choices. The choices method returns a string from its array of strings; predict_the_future concatenates the string "You will " with that return value.
+
+2. This code operates similarly, but this time we have an instance of the RoadTrip class, a subclass of Oracle that defines its own choices instance method. This overrides the choices method defined in the parent class, so it will be the one called by predict_the_future.
+
+3. To determine where Ruby will look when searching for a method we can call the ancestors method on a particular class.
+Calling it on the HotSauce class gives us the lookup chain HotSauce, Taste, Object, Kernel, BasicObject; it will look in HotSauce first and look in each subsequent class in turn until it finds the method.
+Similarly the lookup chain for Orange is Orange, Taste, Object, Kernel, BasicObject.
+
+4. 
+# class BeesWax
+  # attr_accessor :type
+  
+  # def initialize(type)
+    # @type = type
+  # end
+  
+  # def describe_type
+    # puts "I am a {type} of Bees Wax"
+  # end
+# end
+
+5. The variable with a @ prefix is an instance variable, the variable with a @@ prefix is a class variable, and the variable with no prefix is a local variable.
+
+6. The prefix self indicates that self.manufacturer is a class method. It can be called like so: Television.manufacturer.
+
+7. The @@cats_count class variable is initialized to 0. The instance method initialize, which is called each time an instance of the Cat class is created, increments this variable by 1.
+
+8. Bingo needs to be a subclass of Game, which we indicate like so: Bingo < Game
+
+9. Adding a play instance method to the Bingo class will override the play instance method in the parent class Game, so when play is called on an instance of Bingo, the one in Bingo will be called.
+
+10. Object-oriented programming allows the coder to think at a higher level of abstraction, reduce dependencies and repetition of code, write code that is more flexible and reusable, and ensure that methods and functionality is not invoked in unexpected contexts.
