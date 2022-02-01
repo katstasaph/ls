@@ -105,6 +105,7 @@ class RPSGame
     prompt_score
   end
 
+  # rubocop: disable Style/GuardClause
   def prompt_rules
     prompt PROMPTS["rules_ask"]
     choice = prompt_yes_or_no
@@ -242,6 +243,7 @@ class Player
     prompt "#{name} chooses: #{current_move}"
   end
 
+  # rubocop: disable Metrics/MethodLength
   def convert(move)
     move = move.downcase # in case it's "Spock"
     if Rock::ALIASES.include?(move)
@@ -346,6 +348,7 @@ end
 
 # Copycat: Chooses randomly for its first move, then copies your last move
 class Copycat < Responsive
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Echo"
     @desc = "You know, I really look up to you."
@@ -410,6 +413,7 @@ class Weighted < Computer
 end
 
 class WeightedRock < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Tablet"
     @preference = "rock"
@@ -424,6 +428,7 @@ walled."]
 end
 
 class WeightedPaper < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Wikiponent"
     @preference = "paper"
@@ -439,6 +444,7 @@ is not a contest.", "Wikiponent is a work in progress."]
 end
 
 class WeightedScissors < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Clippit"
     @preference = "scissors"
@@ -456,6 +462,7 @@ will play.", "What's the word?"]
 end
 
 class WeightedSpock < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "M-5"
     @preference = "spock"
@@ -473,6 +480,7 @@ the laws of play.", "Sensors have recorded loss of round."]
 end
 
 class WeightedLizard < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Eliza"
     @preference = "lizard"
