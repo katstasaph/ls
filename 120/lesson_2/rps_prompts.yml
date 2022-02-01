@@ -24,6 +24,7 @@ rules: |+
 enter: (Press Enter to continue.)
 yesno: (Please enter yes or no.)
 name_ask: What is your name?
+no_name: (Please enter a name.)
 score_ask: How many points would you like to play to?
 invalid_number: (Please enter a positive whole number.)
 reenter: |+ 

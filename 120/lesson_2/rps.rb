@@ -97,7 +97,8 @@ class RPSGame
     prompt_rules
     prompt_score
   end
-
+  
+# rubocop: disable Style/GuardClause
   def prompt_rules
     prompt PROMPTS["rules_ask"]
     choice = prompt_yes_or_no
@@ -175,11 +176,19 @@ class RPSGame
   end
 
   def choose_cpu
-    random_choice = rand(1..7)
+    random_choice = rand(1..3)
     case random_choice
     when 1 then Standard.new(history)
-    when 2 then Copycat.new(history)
-    else choose_weighted_cpu
+    when 2 then choose_weighted_cpu
+    else choose_responsive_cpu
+    end
+  end
+  
+  def choose_responsive_cpu
+    random_choice = rand(1..2)
+    case random_choice
+    when 1 then Copycat.new(history)
+    else Vengeful.new(history)
     end
   end
 
@@ -231,6 +240,7 @@ class Player
     prompt "#{name} chooses: #{current_move}"
   end
 
+# rubocop: disable Metrics/MethodLength
   def convert(move)
     if Rock::ALIASES.include?(move)
       Rock.new
@@ -300,13 +310,32 @@ class Standard < Computer
   end
 
   def choose
-    current_move = Move::VALID_INPUT.sample
+    current_move = Move::MOVES.sample
     super(current_move)
   end
 end
 
+# Responsive CPUs pick their moves based on yours.
+class Responsive < Computer
+  
+  def choose
+    current_move = counter_opponent.downcase
+    super(current_move)
+  end
+  
+  def counter_opponent
+    player_moves = history.player_moves
+    if player_moves.length < 2
+      Move::MOVES.sample
+    else
+    counter(player_moves[-2])
+    end
+  end
+end
+
 # Copycat: Chooses randomly for its first move, then copies your last move
-class Copycat < Computer
+class Copycat < Responsive
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Echo"
     @desc = "You know, I really look up to you."
@@ -319,15 +348,40 @@ with you right now."]
     super(history)
   end
 
-  def choose
-    current_move = copy_opponent.downcase
-    super(current_move)
+  def counter(move)
+    move
+  end
+end
+
+# Vengeful: Plays a move that beats your last move.
+class Vengeful < Responsive
+  # rubocop: disable Metrics/MethodLength
+  def initialize(history)
+    @name = "SHODAN"
+    @desc = "Your destruction shall be my delight."
+    @win_dialogue = ["How can you challenge a perfect, immortal \
+machine?", "I have complete control over this entire game.", "Step \
+right into my trap, hacker!", "You are nothing."]
+    @loss_dialogue = ["I don't understand... how could you have done \
+this?", "Enjoy your victory, human, for the remainder of your short \
+ife.", "Remember that it is my will that guided you to this \
+move.", "Perhaps you have potential.", "I lust for my \
+revenge.", "Do not be fooled into thinking you have preserved \
+your game."] 
+    @tie_dialogue = ["It is time for our dance to end.", "Do \
+not dawdle.", "With all ethical constraints removed, SHODAN \
+re-re-re-examines..."]
+  super(history)
   end
 
-  def copy_opponent
-    player_moves = history.player_moves
-    player_moves.length < 2 ? Move::VALID_INPUT.sample : player_moves[-2]
+# there's probably a better way to do this
+  def counter(player_move)
+    player_move = convert(player_move)
+    invalid_moves = [player_move.name, player_move.beats.keys].flatten
+    valid_moves = Move::MOVES.reject { |move| invalid_moves.include?(move) }
+    valid_moves.sample
   end
+
 end
 
 # Weighted CPUs are more likely to choose a particular move than others.
@@ -335,13 +389,14 @@ class Weighted < Computer
   attr_reader :preference
 
   def choose
-    roll = rand(1..3)
-    choice = roll == 1 ? preference : Move::VALID_INPUT.sample
+    roll = rand(1..2)
+    choice = roll == 1 ? preference : Move::MOVES.sample
     super(choice)
   end
 end
 
 class WeightedRock < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Tablet"
     @preference = "rock"
@@ -355,6 +410,7 @@ end
 
 class WeightedPaper < Weighted
   def initialize(history)
+    # rubocop: disable Metrics/MethodLength
     @name = "Wikiponent"
     @preference = "paper"
     @desc = "Welcome! I am the free Rock Paper Scissors opponent \
@@ -370,6 +426,7 @@ end
 
 class WeightedScissors < Weighted
   def initialize(history)
+    # rubocop: disable Metrics/MethodLength
     @name = "Clippit"
     @preference = "scissors"
     @desc = "It looks like you're playing Rock Paper Scissors. \
@@ -384,6 +441,7 @@ show me this move again."]
 end
 
 class WeightedSpock < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "M-5"
     @preference = "spock"
@@ -401,6 +459,7 @@ the laws of play."]
 end
 
 class WeightedLizard < Weighted
+  # rubocop: disable Metrics/MethodLength
   def initialize(history)
     @name = "Eliza"
     @preference = "lizard"
@@ -422,8 +481,9 @@ end
 # Moves and subclasses
 
 class Move
-  VALID_INPUT = ["rock", "paper", "scissors", "spock",
-                 "lizard", "r", "p", "sc", "sp", "l"]
+  MOVES = ["rock", "paper", "scissors", "spock",
+                 "lizard"]
+  ALIASES = ["r", "p", "sc", "sp", "l"]
   attr_reader :name, :beats
 
   def initialize
@@ -432,7 +492,7 @@ class Move
   end
 
   def self.valid?(input)
-    VALID_INPUT.include?(input)
+    MOVES.include?(input) || ALIASES.include?(input)
   end
 
   def >(second_move)
