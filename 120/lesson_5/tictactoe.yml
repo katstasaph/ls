@@ -1,0 +1,53 @@
+intro: |-
+    Welcome to Tic-Tac-Toe!
+       Read the rules? (Y)es (N)o
+rules_intro: |+
+    Every turn, you or your opponent marks one square on the game board.
+       The squares are numbered 1 to 9 as follows:
+rules_end: |+         
+       The first player with a line of 3 of their own squares wins the round.
+          Lines can be horizontal, vertical, or diagonal.
+       
+          If the board becomes full before anyone gets 3 squares in a row, 
+          the round ends in a tie.
+
+name_ask: What is your name?
+no_name: Please enter a name.
+symbol_ask: Choose a symbol to mark the board with.
+invalid_length: Please enter only one character.
+invalid_symbol: Invalid symbol. Please choose something else.
+          
+enter: Press Enter to continue.
+yesno: Please enter yes or no.
+
+victory: How many points do you want to play to?
+invalid_int: Please enter a positive whole number.
+
+difficulty: "Choose your opponent's skill level: (B)eginner, (A)dvanced, (I)mpossible, (R)andom."
+invalid_difficulty: Please choose B for Beginner, A for Advanced, I for Impossible, or (R) for Random..
+
+first_player: "Choose who goes first: (P)layer, the (C)omputer or (R)andom."
+invalid_first_player: Please choose P for Player, C for Computer, or R for Random.
+
+current_round: "Beginning round %{round}!\n"
+yourturn: It's your turn.
+move: "Choose a square: %{squares}.\n"
+nonum: "Invalid input. Please choose a square: %{squares}."
+taken: "That square is taken! Please choose a square: %{squares}."
+
+you_move: "Your move: %{movenum}."
+comp_move: "Computer's move: %{movenum}."
+think: "Thinking..."
+
+round_win: "You won this round!\n"
+round_loss: "You lost this round."
+tie: "It's a tie!"
+
+you_score: "Your score: %{score}."
+comp_score: "Computer's score: %{score}.\n\n"
+
+win: "Congratulations, you won the match!"
+loss: "Sorry, you lost the match!"
+
+playagain: "Play again? (Y)es (N)o"
+end: Goodbye!
