@@ -86,6 +86,10 @@ class Board
 
   attr_accessor :squares, :symbols
 
+  def initialize
+    @squares = {}
+  end
+
   def display
     ALL_ROWS.each { |row| print_board_line(row) }
   end
@@ -100,6 +104,10 @@ class Board
 
   def list_open_squares
     join_with_or(open_square_keys)
+  end
+
+  def empty?
+    open_square_keys.length == 9
   end
 
   def full?
@@ -117,19 +125,11 @@ class Board
     choice
   end
 
-  def vulnerable_line?(line, symbol)
-    marks = marks(line)
-    marks.count(symbol) == 2
-  end
-
   def winning_mark(first, second)
     WINNING_LINES.each do |line|
       marks_to_check = marks(line)
-      if marks_to_check.all?(first)
-        return first
-      elsif marks_to_check.all?(second)
-        return second
-      end
+      return first if marks_to_check.all?(first)
+      return second if marks_to_check.all?(second)
     end
     nil
   end
@@ -144,6 +144,11 @@ class Board
     nums.map { |num| squares[num].to_s }
   end
 
+  def vulnerable_line?(line, symbol)
+    marks = marks(line)
+    marks.count(symbol) == 2
+  end
+
   def print_board_line(row_number)
     case row_number
     when 1, 13 then puts Square::EMPTY
@@ -155,17 +160,20 @@ class Board
 
   def build_marked_row(row_number)
     grid = FILLER_ROW.chars
-    row_marks = []
-    case row_number
-    when 3
-      row_marks = marks(Square::TOP)
-    when 7
-      row_marks = marks(Square::MIDDLE)
-    when 11
-      row_marks = marks(Square::BOTTOM)
-    end
+    row_marks = lookup_marks(row_number)
     mark_row(grid, row_marks)
     grid.join
+  end
+
+  def lookup_marks(row_number)
+    case row_number
+    when 3
+      marks(Square::TOP)
+    when 7
+      marks(Square::MIDDLE)
+    when 11
+      marks(Square::BOTTOM)
+    end
   end
 
   def mark_row(grid, nums)
@@ -177,7 +185,7 @@ end
 
 class EmptyBoard < Board
   def initialize
-    @squares = {}
+    super
     ALL_KEYS.each { |sqr| @squares[sqr] = Square.new }
   end
 end
@@ -185,7 +193,7 @@ end
 # A board with squares marked 1-9, to illustrate the rules
 class RulesBoard < Board
   def initialize
-    @squares = {}
+    super
     ALL_KEYS.each { |sqr| @squares[sqr] = Square.new(sqr.to_s) }
   end
 end
@@ -193,7 +201,7 @@ end
 # Creates a deep copy of the board for the minimax algorithm
 class MinimaxBoard < Board
   def initialize(old_board)
-    @squares = {}
+    super()
     ALL_KEYS.each do |sqr|
       new_mark = copy_mark(old_board, sqr)
       @squares[sqr] = Square.new(new_mark)
@@ -211,6 +219,7 @@ class Square
   TOP = [1, 2, 3]
   MIDDLE = [4, 5, 6]
   BOTTOM = [7, 8, 9]
+  CORNERS = [1, 3, 7, 9]
   EMPTY = " "
   CENTER = 5
   attr_accessor :mark
@@ -351,7 +360,7 @@ class Computer < Player
   private
 
   def choose_symbol(opponent)
-    opponent == "X" ? "O" : "X"
+    opponent.upcase == "X" ? "O" : "X"
   end
 end
 
@@ -411,11 +420,21 @@ class ImpossibleComputer < Computer
 
   def choose
     prompt PROMPTS["think"]
-    choice = minimax(board)[1]
+    choice = choose_strategy
     super(board, choice, symbol)
   end
 
   private
+
+  # We don't need to do minimax if the board is empty
+  # since the optimal move will always be any corner
+  def choose_strategy
+    if board.empty?
+      Square::CORNERS.sample
+    else
+      minimax(board)[1]
+    end
+  end
 
   # rubocop: disable Metrics/AbcSize
   # rubocop: disable Metrics/CyclomaticComplexity
@@ -480,6 +499,7 @@ class TTTGame
 
   def initialize
     @board = EmptyBoard.new
+    @first_player = nil
     @current_player = nil
     @human = nil
     @computer = nil
@@ -502,7 +522,8 @@ class TTTGame
   private
 
   attr_accessor :board, :winner, :current_player,
-                :human, :computer, :victory_total
+                :human, :computer, :victory_total,
+                :first_player
 
   def introduce_game
     clear_screen
@@ -550,15 +571,19 @@ class TTTGame
     if choice == "random"
       choice = ["beginner", "advanced", "impossible"].sample
     end
-    self.computer = case choice
-                    when "beginner"
-                      EasyComputer.new(board, human.symbol)
-                    when "advanced"
-                      AdvancedComputer.new(board, human.symbol)
-                    else
-                      ImpossibleComputer.new(board, human.symbol)
-                    end
+    self.computer = choose_computer_difficulty(choice)
     prompt "Your opponent is #{computer}, the #{computer.difficulty} computer."
+  end
+
+  def choose_computer_difficulty(choice)
+    case choice
+    when "beginner"
+      EasyComputer.new(board, human.symbol)
+    when "advanced"
+      AdvancedComputer.new(board, human.symbol)
+    else
+      ImpossibleComputer.new(board, human.symbol)
+    end
   end
 
   def prompt_first_player
@@ -575,8 +600,9 @@ class TTTGame
 
   def choose_first_player(choice)
     if choice == "random" then choice = ["player", "computer"].sample end
-    self.current_player = choice == "player" ? human : computer
-    prompt "#{current_player} will go first."
+    self.first_player = choice == "player" ? human : computer
+    self.current_player = first_player
+    prompt "#{first_player} will go first."
   end
 
   def set_victory_total
@@ -592,6 +618,10 @@ class TTTGame
 
   def alternate_player
     self.current_player = current_player == human ? computer : human
+  end
+
+  def reset_player
+    self.current_player = first_player
   end
 
   def run_match
@@ -612,6 +642,11 @@ class TTTGame
       break if game_over?
       alternate_player
     end
+    finalize_round
+  end
+  
+  def finalize_round
+    reset_player
     display_round_results
   end
 
