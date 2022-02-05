@@ -115,6 +115,7 @@ class RPSGame
       pause
     end
   end
+  # rubocop: enable Style/GuardClause
 
   def display_win
     winning_move, verb = customize(human.current_move, cpu.current_move)
@@ -258,6 +259,7 @@ class Player
       Lizard.new
     end
   end
+  # rubocop: enable Metrics/MethodLength
 
   def to_s
     name
@@ -361,6 +363,7 @@ know your strategy!", "You make the best moves!"]
 with you right now.", "Great minds think alike!"]
     super(history)
   end
+  # rubocop: enable Metrics/MethodLength
 
   def counter(move)
     move
@@ -426,6 +429,7 @@ walled."]
     super(history)
   end
 end
+  # rubocop: enable Metrics/MethodLength
 
 class WeightedPaper < Weighted
   # rubocop: disable Metrics/MethodLength
@@ -442,7 +446,8 @@ is not a contest.", "Wikiponent is a work in progress."]
     super(history)
   end
 end
-
+  # rubocop: enable Metrics/MethodLength
+  
 class WeightedScissors < Weighted
   # rubocop: disable Metrics/MethodLength
   def initialize(history)
@@ -460,7 +465,8 @@ will play.", "What's the word?"]
     super(history)
   end
 end
-
+  # rubocop: enable Metrics/MethodLength
+  
 class WeightedSpock < Weighted
   # rubocop: disable Metrics/MethodLength
   def initialize(history)
@@ -478,6 +484,7 @@ the laws of play.", "Sensors have recorded loss of round."]
     super(history)
   end
 end
+  # rubocop: enable Metrics/MethodLength
 
 class WeightedLizard < Weighted
   # rubocop: disable Metrics/MethodLength
@@ -498,6 +505,7 @@ class WeightedLizard < Weighted
     super(history)
   end
 end
+  # rubocop: enable Metrics/MethodLength
 
 # Moves and subclasses
 
