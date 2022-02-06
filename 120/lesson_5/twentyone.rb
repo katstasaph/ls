@@ -145,19 +145,6 @@ module CardCounting
   # This strategy is only for hard hands, not soft
   # It again disregards double, split, etc.
 
-  COUNTS = {
-    "Ace" => -1,
-    "10" => -1,
-    "9" => 0,
-    "8" => 0,
-    "7" => 0,
-    "6" => 1,
-    "5" => 1,
-    "4" => 1,
-    "3" => 1,
-    "2" => 1
-  }
-
   # Data structure:
   # [dealer value, human value] => count to stand at/above
   COUNT_STRATEGY = {
@@ -653,8 +640,7 @@ class CountingDealer < Dealer
   def do_count(card)
     unless seen_cards.include?(card)
       seen_cards << card
-      card = card.disregard_face
-      self.count += COUNTS[card]
+      self.count += card.hilo_score
     end
   end
 end
