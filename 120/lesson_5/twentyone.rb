@@ -196,12 +196,12 @@ class CardContainer
   end
 
   def size
-    cards.length
+    cards.size
   end
 
   def remove(number = nil)
     if !number
-      number = cards.size
+      number = size
     end
     cards.pop(number)
   end
@@ -379,7 +379,7 @@ class Player
   end
 
   def new_hand
-    deck << (hand.remove)
+    deck << hand.remove
     deck.shuffle
     self.taking_turns = true
   end
@@ -626,9 +626,7 @@ class CountingDealer < Dealer
   def choose_move
     update_count
     choice = counting_move(count, other_card)
-    if !choice
-      choice = strategic_move(other_card)
-    end
+    choice ||= strategic_move(other_card)
     super(choice)
   end
 
@@ -708,7 +706,7 @@ class TwentyOneGame
   def prep_settings
     clear_screen
     set_players
-    prompt_win_total
+    handle_win_total
   end
 
   def print_rules
@@ -752,10 +750,10 @@ class TwentyOneGame
 
   def set_players
     self.human = Human.new(deck, START_CHIPS)
-    self.dealer = prompt_dealer_type
+    self.dealer = handle_computer_choice
   end
 
-  def prompt_dealer_type
+  def handle_computer_choice
     prompt PROMPTS["difficulty"]
     choice = nil
     loop do
@@ -778,7 +776,7 @@ class TwentyOneGame
     end
   end
 
-  def prompt_win_total
+  def handle_win_total
     total = nil
     loop do
       prompt format(PROMPTS["chips"], chips: START_CHIPS.to_s)
