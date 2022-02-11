@@ -122,8 +122,7 @@ module Strategy
     hand_type = hand.hard? ? :hard : :soft
     hand_value = hand.value
     return "hit" if hand_type == :soft && hand_value < 18
-    other = other.rank
-    lookup_strat(hand_type, hand_value, other)
+    lookup_strat(hand_type, hand_value, other.rank)
   end
 
   def lookup_strat(hand_type, hand_value, other)
@@ -761,7 +760,7 @@ class TwentyOneGame
       break if valid_input?(choice, DIFFICULTIES)
       prompt PROMPTS["invalid_difficulty"]
     end
-    if DIFFICULTIES.keys.include?(choice) then choice = DIFFICULTIES[choice] end
+    choice = parse_input(choice, DIFFICULTIES)
     initialize_computer(choice)
   end
 
