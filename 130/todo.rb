@@ -9,8 +9,6 @@ class TodoList
     @title = title
     @todos = []
   end
-
-  # rest of class needs implementation
   
   def add(todo)
     raise TypeError.new("Can only add Todo objects") unless todo.class == Todo
@@ -35,14 +33,14 @@ class TodoList
   end
   
   def to_a
-    @todos
+    @todos.clone
   end
   
   def done?
     @todos.all? { |todo| todo.done? }
   end
 
-  # ---- Iterating, selecting from the list -----  
+  # ---- Iterating and selecting from the list -----  
   
   def each
     @todos.each { |todo| yield(todo) }
