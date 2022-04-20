@@ -70,7 +70,7 @@
   # end
 # end
 
-# defining initialize here is redundant technically; instructions specified only alter 5 lines of code max
+# defining initialize here is redundant; instructions specified only alter 5 lines of code max
 
 # class Undergraduate < Student
   # def initialize(name, year)
