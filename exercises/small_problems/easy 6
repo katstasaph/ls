@@ -1,0 +1,105 @@
+# 1.
+# DEGREE = "\xC2\xB0"
+# MINUTES_PER_DEGREE = 60
+# SECONDS_PER_MINUTE = 60
+# SECONDS_PER_DEGREE = MINUTES_PER_DEGREE * SECONDS_PER_MINUTE
+
+# def dms(degrees_float)
+  # degrees_in_range = convert_to_periodic_range(degrees_float, 360)
+  # total_seconds = (degrees_in_range * SECONDS_PER_DEGREE).round
+  # degrees, remaining_seconds = total_seconds.divmod(SECONDS_PER_DEGREE)
+  # minutes, seconds = remaining_seconds.divmod(SECONDS_PER_MINUTE)
+  # format(%(#{degrees}#{DEGREE}%02d'%02d"), minutes, seconds)
+# end
+
+# def convert_to_periodic_range(num, period)
+  # positive = num > 0
+  # loop do
+    # if num >= 0 && num < period
+      # break
+    # end
+  # positive ? num -= period : num += period
+  # end 
+  # num
+# end
+'
+
+# 2.
+# VOWELS = ["a", "e", "i", "o", "u"]
+
+# def remove_vowels(arr)
+  # arr.map do |str|
+    # str = str.chars.reject do |chr|
+      # VOWELS.include?(chr.downcase)
+    # end
+    # str.join
+  # end
+# end
+
+# 3.
+# def find_fibonacci_index_by_length(digits)
+  # num1 = 1
+  # num2 = 1
+  # index = 2
+  # loop do
+    # index += 1
+    # fibonacci = num1 + num2
+    # break if fibonacci >= 10**(digits-1)
+
+    # num1 = num2
+    # num2 = fibonacci
+  # end
+  # index
+# end
+
+# 4.
+# def reverse!(list)
+  # i = 0
+  # while i < list.length
+    # list.insert(i, list.pop)
+    # p list
+    # i += 1
+  # end
+  # list
+# end
+
+# 5.
+# def reverse(list)
+  # (1..list.length).inject([]) { |newarr, i| newarr << (list[list.length - i]) }
+# end
+
+# 6.
+# def merge(arr1, arr2)
+#   (arr1 + arr2).uniq
+# end
+
+# 7.
+# def halvsies(arr)
+  # halved_arr = [[], []]
+  # split_point = arr.length == 0 ? 0 : (arr.length - 1)/2 # Minus 1 to account for zero index
+  # arr.each_index do |i|
+    # halved_index = i <= split_point ? 0 : 1
+    # halved_arr[halved_index] << arr[i]
+  # end
+  # halved_arr
+# end
+
+# 8.
+# def find_dup(arr)
+  # arr.each { |element| return element if arr.count(element) > 1 }
+# end
+
+# 9.
+# def include?(arr, value)
+#   arr.each { |element| return true if value == element }
+#   false
+# end
+
+# 10.
+def triangle(num)
+  (1..num).each do |i|
+    print (" " * (num - i))
+    print "*" * i
+    print "\n"
+  end
+end

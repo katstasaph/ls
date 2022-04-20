@@ -1,0 +1,87 @@
+# 1.
+# class Tree
+  # include Enumerable
+
+  # def each
+    # # implementation omitted
+  # end
+# end
+
+# 2.
+# def compute(arg)
+  # return "Does not compute." unless block_given?
+  # yield(arg)
+# end
+
+# p compute(0) { |num| num}
+# p compute(0) { |num| num + 4 }
+# p compute(0) == 'Does not compute.'
+
+# 3.
+# def missing(arr)
+#   (arr.first..arr.last).to_a - arr
+# end
+
+# 4.
+# def divisors(n)
+  # return [1] if n == 1
+  # divisors = []
+  # (1..Math.sqrt(n)).each do |num|
+    # if n % num == 0
+      # divisors << num
+      # divisors << n / num
+    # end
+  # end
+  # divisors
+# end
+
+# 5.
+# NAMES = ["Nqn Ybirynpr", "Tenpr Ubccre", "Nqryr Tbyqfgvar", "Nyna Ghevat", "Puneyrf Onoontr", "Noqhyynu Zhunzznq ova Zhfn ny-Xujnevmzv", "Wbua Ngnanfbss", "Ybvf Unvog", "Pynhqr Funaaba", "Fgrir Wbof",
+# "Ovyy Tngrf", "Gvz Orearef-Yrr", "Fgrir Jbmavnx", "Xbaenq Mhfr", "Fve Nagbal Ubner", "Zneiva Zvafxl", "Lhxvuveb Zngfhzbgb", "Unllvz Fybavzfxv", "Tregehqr Oynapu"]
+
+# def rot13(string)
+  # rot13_chars = string.chars.map do |chr| 
+    # case chr
+    # when 'a'..'m', 'A'..'M' then (chr.ord + 13).chr
+    # when 'n'..'z', 'N'..'Z' then (chr.ord - 13).chr
+    # else chr
+    # end
+  # end
+  # rot13_chars.join
+# end
+
+# NAMES.each { |name| puts rot13(name) }
+
+# 6.
+# def any?(arr)
+  # arr.each { |element| return true if yield(element) }
+  # false
+# end
+
+# 7.
+# def all?(arr)
+  # arr.each { |element| return false unless yield(element) }
+  # true
+# end
+
+# 8.
+# def none?(arr, &block)
+#   !any?(arr, &block)
+# end
+
+# 9.
+# def one?(arr)
+  # passes = 0
+  # arr.each do |element|
+    # passes += 1 if yield(element)
+    # break if passes > 1
+  # end
+  # passes == 1
+# end
+
+# 10.
+# def count(arr)
+  # arr.inject(0) do |sum, element|
+    # sum += block_given? && yield(element) ? 1 : 0
+  # end
+# end

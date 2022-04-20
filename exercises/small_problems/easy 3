@@ -1,0 +1,73 @@
+# 1.
+# # Input not validated per problem text
+# puts "Enter the first number:"
+# num1 = gets.strip.to_i
+# puts "Enter the second number:"
+# num2 = gets.strip.to_i
+# puts "#{num1} + #{num2} = #{num1 + num2}"
+# puts "#{num1} - #{num2} = #{num1 - num2}"
+# puts "#{num1} * #{num2} = #{num1 * num2}"
+# puts "#{num1} / #{num2} = #{num1 / num2}"
+# puts "#{num1} % #{num2} = #{num1 % num2}"
+# puts "#{num1} ^ #{num2} = #{num1 ** num2}"
+
+# 2.
+# puts "Please write a word or multiple words:"
+# text = gets.chomp
+# stripped_text = text.strip.gsub!(" ", "")
+# puts "There are #{stripped_text.length} characters in '#{text}'.'"
+
+# 3.
+# def multiply(num1, num2)
+#  num1 * num2
+# end
+
+# 4.
+# def power(num, exponent)
+#   if num == 0 && exponent == 0
+#     return "undefined"
+#   end
+#   num ** exponent
+# end
+
+# 5.
+# def xor?(bool1, bool2)
+#   !!bool1 == !!bool2 ? false : true
+# end
+
+# 6.
+# def every_other_element(arr, start_at_zero = true)
+#   remainder = start_at_zero ? 0 : 1
+#   newarr = []
+#   arr.each_index { |i| newarr << arr[i] if i % 2 == remainder }
+#   newarr
+# end
+
+# 7.
+# def palindrome?(input)
+#   input == input.reverse
+# end
+
+# def palindrome_brute_force?(input) # No if, unless, or case allowed
+#   i = 0
+#   palindrome = true
+#   iterations = (input.length / 2) 
+#   while (palindrome == true && iterations > i)
+#     last_element = input.length - (i+1)
+#     palindrome = (input[i] == input[last_element])
+#     i += 1
+#   end
+#   palindrome
+# end
+
+# 8.
+# def palindrome?(input)
+#   input = input.downcase
+#   input = input.gsub(/[^\w]/, "").gsub("_", "") 
+#   input == input.reverse
+# end
+
+# 9.
+# def palindromic_number?(num)
+#   num.to_s == num.to_s.reverse
+# end

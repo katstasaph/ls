@@ -1,0 +1,173 @@
+# 1.
+# END_PUNCTUATION = [".", "!", "?"]
+
+# def get_longest_sentence(text)
+  # cleaned_text = clean_text(text)
+  # sentences = []
+  # current_sentence = []
+  # cleaned_text.split.each do |word|
+    # current_sentence << word
+    # if ending_punctuation?(word)
+      # sentences << current_sentence
+      # current_sentence = []
+    # end
+  # end
+  # sentences.sort { |a, b| a.length <=> b.length }.last.join(" ")
+# end
+
+# def clean_text(text)
+  # text.gsub("\n", " ")
+# end
+
+# def ending_punctuation?(word)
+  # END_PUNCTUATION.include?(word.chars.last)
+# end
+
+# 2.
+# ASCII_N = 78
+# ASCII_OFFSET = 13
+
+# def block_word?(word)
+  # letters = word.chars.map { |chr| chr.upcase }
+  # return false unless letters.uniq == letters
+  # letters.each do |letter|
+    # return false if letters.any?(get_corresponding_letter(letter))
+  # end
+  # true
+# end
+
+# def get_corresponding_letter(letter)
+  # letter_ascii = letter.getbyte(0)
+  # letter_ascii < ASCII_N ? (letter_ascii + ASCII_OFFSET).chr : (letter_ascii - ASCII_OFFSET).chr
+# end
+
+# 3.
+# def letter_percentages(str)
+  # {lowercase: get_percentage(str, "a-z"), uppercase: get_percentage(str, "A-Z"), neither: get_percentage(str, "^A-Za-z") }
+# end
+
+# def get_percentage(str, letters)
+  # percentage = (str.count(letters).to_f / str.length) * 100
+# end
+
+# 4.
+# def balanced?(str)
+  # paren_count = 0
+  # str.chars.each do |chr|
+    # paren_count += 1 if chr == '('
+    # paren_count -= 1 if chr == ')'
+    # break if paren_count < 0
+  # end
+
+  # paren_count.zero?
+# end
+
+# 5.
+# def triangle(side1, side2, side3)
+  # sides = [side1, side2, side3].sort
+  # sum1 = sides[0] + sides[1]
+  # sum2 = sides[1] + sides[2]
+  # sum3 = sides[0] + sides[2]
+  # if sum1 <= sides[2]
+    # :invalid
+  # elsif sum1 == sum2 && sum2 == sum3
+    # :equilateral
+  # elsif sum1 == sum2 || sum1 == sum3
+    # :isosceles
+  # else
+    # :scalene
+  # end
+# end
+
+# 6.
+# def triangle(angle1, angle2, angle3)
+  # angles = [angle1, angle2, angle3]
+  # if angles.inject(:+) != 180 || angles.any? { |angle| angle <=0 }
+    # :invalid
+  # elsif angles.any? { |angle| angle == 90 }
+    # :right
+  # elsif angles.all? { |angle| angle < 90 }
+    # :acute
+  # else
+    # :obtuse
+  # end
+# end
+
+# 7.
+# require 'date'
+
+# def friday_13th(year)
+  # fridays = 0
+  # (1..12).each do |month|
+    # thirteenth = Date.new(year, month, 13)
+    # if thirteenth.friday? then fridays += 1 end
+  # end
+  # fridays
+# end
+
+# def five_fridays(year)
+  # five_fridays = 0
+  # (1..12).each do |month|
+    # friday = first_friday(year, month)
+    # total_fridays = 0
+    # while Date.valid_date?(year, month, friday)
+      # total_fridays += 1
+      # friday += 7
+    # end
+    # five_fridays += 1 if total_fridays == 5
+  # end
+  # five_fridays
+# end
+
+# def first_friday(year, month)
+  # (1..7).each do |day|
+    # return day if Date.new(year, month, day).friday?
+  # end
+# end
+
+# 8.
+# UPPER_BOUND = 9876543201
+
+# def featured(num)
+  # num_to_check = get_starting_multiple(num)
+  # loop do
+    # break if num_to_check > UPPER_BOUND  
+    # return num_to_check if featured?(num_to_check)
+    # num_to_check += 14
+  # end
+  # p "There is no featured number higher than #{num}."
+# end
+
+# def featured?(num)
+  # num.odd? && num.to_s.chars.uniq == num.to_s.chars
+# end
+
+# def get_starting_multiple(num)
+  # multiple = ((num / 7) + 1)  * 7
+  # multiple.odd? ? multiple : (multiple + 7)
+# end
+
+# 9.
+# def bubble_sort!(arr)
+  # i = nil
+  # cutoff = arr.length
+  # loop do
+    # i = 0
+    # sorting = false
+    # while arr[i + 1] && cutoff > 0
+      # if arr[i] > arr[i + 1]
+        # sorting = true
+        # arr[i], arr[i + 1] = arr[i + 1], arr[i]
+      # end
+      # i += 1
+    # end
+    # cutoff -= 1
+    # break unless sorting
+  # end
+# end
+
+# 10.
+# def sum_square_difference(num)
+  # terms = (1..num).to_a
+  # terms.inject(:+)**2 - terms.map { |num| num**2 }.inject(:+)
+# end

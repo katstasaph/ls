@@ -1,0 +1,126 @@
+# 1.
+# class Cat
+
+  # def self.generic_greeting
+    # puts "Hello! I'm a cat!"
+  # end
+
+# end
+
+# 2.
+# class Cat
+  # attr_accessor :name
+
+  # def initialize(name)
+    # @name = name
+  # end
+  
+  # def rename(new_name)
+    # self.name = new_name
+  # end
+# end
+
+# 3.
+# class Cat
+  # attr_accessor :name
+
+  # def initialize(name)
+    # @name = name
+  # end
+  
+  # def identify
+    # self
+  # end
+# end
+
+# 4.
+# class Cat
+  # attr_reader :name
+
+  # def initialize(name)
+    # @name = name
+  # end
+  
+  # def self.generic_greeting
+    # puts "Hello! I'm a cat!"
+  # end
+  
+  # def personal_greeting
+    # puts "Hello! My name is #{name}!"
+  # end
+# end
+
+# 5.
+# class Cat
+  # @@total_cats = 0
+  # attr_reader :name
+
+  # def initialize
+    # @@total_cats += 1
+  # end
+  
+  # def self.total
+    # puts @@total_cats
+  # end
+# end
+
+# 6.
+# class Cat
+  # CAT_COLOR = "purple"
+  # attr_reader :name, :color
+
+  # def initialize(name)
+    # @name = name
+    # @color = CAT_COLOR
+  # end
+  
+  # def greet
+    # puts "Hello! My name is #{name}, and I'm a #{color} cat!"
+  # end
+  
+# end
+
+# 7.
+# class Cat
+  # attr_reader :name
+
+  # def initialize(name)
+    # @name = name
+  # end
+
+  # def to_s
+    # "I'm #{name}!"
+  # end
+  
+# end
+ 
+# 8.
+# class Person
+#   attr_accessor :secret
+# end
+
+# 9.
+# class Person
+  # attr_writer :secret
+  
+  # def share_secret
+    # puts secret
+  # end
+
+  # private
+
+  # attr_reader :secret
+# end
+
+# 10.
+# class Person
+  # attr_writer :secret
+
+  # def compare_secret(person2)
+    # secret == person2.secret
+  # end
+
+  # protected
+
+  # attr_reader :secret
+# end

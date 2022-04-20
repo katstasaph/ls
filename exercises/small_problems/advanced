@@ -1,0 +1,203 @@
+# 1.
+# MARKER = "_"
+
+# VOWEL_INDICATOR = "an"
+# PUNCTUATION = [",", ".", "!", "?"]
+# NOUNS_SINGULAR = ["clown", "goose", "heron", "jester", "mime", "pelican"]
+# NOUNS_SINGULAR_VOWEL = ["aardvark", "emu", "ostrich"]
+# NOUNS_PLURAL = ["aardvarks", "clowns", "geese", "emus","herons", "jesters", "mimes", "ostriches", "pelicans"]
+# VERBS_PRESENT = ["bash", "bonk", "stomp", "trash"]
+# VERBS_PAST = ["bashed", "bonked", "stomped", "trashed"]
+# VERBS_PARTICIPLE = ["bashing", "bonking", "stomping", "trashing"]
+# ADJECTIVES = ["ferocious", "horrid", "sassy"]
+# ADJECTIVES_VOWEL = ["amazing", "atrocious", "incredible", "unbelievable"]
+# ADVERBS = ["brutally", "sassily", "unapologetically"]
+# NUMBERS = ["1", "10", "100", "1,000", "infinity"]
+
+# def madlibs(filename)
+  # file = File.read(filename)
+  # words = file.split
+  # filled_blanks = []
+  # words.each_with_index { |word, i| filled_blanks << fill_blank_with_punctuation(word, needs_vowel?(words[i - 1])) }
+  # puts filled_blanks.join(" ")
+# end
+
+# def fill_blank_with_punctuation(word, vowel)
+  # if word[0] == MARKER
+    # last_char = word[-1]
+    # PUNCTUATION.include?(last_char) ? (fill_blank(word.delete_suffix(last_char), vowel) + last_char) : fill_blank(word, vowel)
+  # else
+    # word
+  # end
+# end
+
+# def fill_blank(word, vowel)
+  # if word.include?("NOUN_SINGULAR") && vowel then NOUNS_SINGULAR_VOWEL.sample
+  # elsif word.include?("NOUN_SINGULAR") && !vowel then NOUNS_SINGULAR.sample
+  # elsif word.include?("NOUN_PLURAL") then NOUNS_PLURAL.sample
+  # elsif word.include?("VERB_PRESENT") then VERBS_PRESENT.sample
+  # elsif word.include?("VERB_PAST") then VERBS_PAST.sample
+  # elsif word.include?("VERB_PARTICIPLE") then VERBS_PARTICIPLE.sample
+  # elsif word.include?("ADJ") && vowel then return ADJECTIVES_VOWEL.sample
+  # elsif word.include?("ADJ") && !vowel then ADJECTIVES.sample
+  # elsif word.include?("ADVERB") then ADVERBS.sample
+  # elsif word.include?("NUMBER") then NUMBERS.sample
+  # else word
+  # end
+# end
+
+# def needs_vowel?(prior_word)
+  # prior_word == VOWEL_INDICATOR
+# end
+
+# 2.
+# STAR = "*"
+# EMPTY = " "
+
+# def star(size)
+  # middle  = (size / 2) + 1
+  # (1..size).each { |row| row == middle ? middle_row(size) : star_row(row, size) }
+  # print "\n"
+# end
+
+# def star_row(row, size)
+  # print "\n"
+  # star_spaces = [row, ((size / 2) + 1), (size - row + 1)]
+  # (1..size).each { |column| print star_spaces.include?(column) ? STAR : EMPTY }
+# end
+
+# def middle_row(size)
+  # print "\n" + (STAR * size)
+# end
+
+# star(9)
+
+# 3.
+# def transpose!(matrix)
+  # matrix[0][1], matrix[1][0] = matrix[1][0], matrix[0][1]
+  # matrix[0][2], matrix[2][0] = matrix[2][0], matrix[0][2]
+  # matrix[1][2], matrix[2][1] = matrix[2][1], matrix[1][2]
+  # matrix
+# end
+
+# def transpose(matrix)
+  # matrix.each_with_index.map do |row, row_index|
+    # row.each_with_index.map { |num, num_index| row_index == num_index ? num : matrix[num_index][row_index] }
+  # end
+# end
+
+# 4.
+# note: here we are using the linear algebra convention of m = rows, n = columns
+# def transpose(matrix)
+  # return matrix if matrix.length < 1 # base recursive case
+  # m = matrix.length
+  # n = matrix[0].length
+  # return transpose_square(matrix) if m == n # already a square
+  # square = largest_square_submatrix(matrix)
+  # remainder = matrix_remainder(matrix, square)
+  # if n > m
+    # transpose_square(square) + transpose(remainder)
+  # else
+    # remainder = transpose(remainder)
+    # transpose_square(square).each_with_index.map { |row, i| row + remainder[i] }
+  # end
+# end
+
+# def transpose_square(matrix)
+  # matrix.each_with_index.map do |row, row_index|
+    # row.each_with_index.map { |num, num_index| row_index == num_index ? num : matrix[num_index][row_index] }
+  # end
+# end
+
+# def largest_square_submatrix(matrix)
+  # m = matrix.length 
+  # n = matrix[0].length
+  # if m > n
+    # matrix.take(n)
+  # else
+    # matrix.map { |row| row.take(m) }
+  # end
+# end
+
+# def matrix_remainder(matrix, square)
+  # m = matrix.length 
+  # n = matrix[0].length
+  # if m > n
+    # matrix.drop(n)
+  # else  
+    # matrix.each_with_index.map { |row, i| row.drop(m) }
+  # end
+# end
+
+# 5.
+# def rotate(matrix, degrees)
+  # (1..(degrees/90)).each { matrix = rotate90(matrix) }
+  # matrix
+# end
+
+# def rotate90(matrix)
+  # return matrix if matrix.length < 1 # base recursive case
+  # m = matrix.length
+  # n = matrix[0].length
+  # return transpose_square(matrix) if m == n # already a square
+  # square = largest_square_submatrix(matrix)
+  # remainder = matrix_remainder(matrix, square)
+  # if n > m
+    # transpose_square(square) + rotate90(remainder)
+  # else
+    # remainder = rotate90(remainder)
+    # transpose_square(square).each_with_index.map { |row, i| row + remainder[i] }
+  # end
+# end
+
+# def transpose_square(matrix)
+  # matrix.each_with_index.map do |row, row_index|
+    # row.each_with_index.map { |num, num_index| matrix.reverse[num_index][row_index] }
+  # end
+# end
+
+# def largest_square_submatrix(matrix)
+  # m = matrix.length 
+  # n = matrix[0].length
+  # if m > n
+    # matrix.take(n)
+  # else
+    # matrix.map { |row| row.take(m) }
+  # end
+# end
+
+# def matrix_remainder(matrix, square)
+  # m = matrix.length 
+  # n = matrix[0].length
+  # if m > n
+    # matrix.drop(n)
+  # else  
+    # matrix.each_with_index.map { |row, i| row.drop(m) }
+  # end
+# end
+
+# 6.
+# def merge(array1, array2)
+  # index2 = 0
+  # result = []
+
+  # array1.each do |value|
+    # while index2 < array2.size && array2[index2] <= value
+      # result << array2[index2]
+      # index2 += 1
+    # end
+    # result << value
+  # end
+
+  # result.concat(array2[index2..-1])
+# end
+
+# 7.
+# def merge_sort(array)
+  # return array if array.length == 1 
+  # half1 = array.slice(0, array.length/2)
+  # half2 = array.drop(half1.length)
+  # sorted_half1 = merge_sort(half1)
+  # sorted_half2 = merge_sort(half2)
+  # merge(sorted_half1, sorted_half2)
+# end

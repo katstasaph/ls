@@ -1,0 +1,235 @@
+# 1.
+# module Mailable
+  # def print_address
+    # puts "#{name}"
+    # puts "#{address}"
+    # puts "#{city}, #{state} #{zipcode}"
+  # end
+# end
+
+# # Assume for this exercise the subclasses have otherwise complete implementations
+
+# class Customer
+  # include Mailable
+  # attr_reader :name, :address, :city, :state, :zipcode
+# end
+
+# class Employee
+  # include Mailable
+  # attr_reader :name, :address, :city, :state, :zipcode
+# end
+
+# 2.
+# module Drivable
+  # def drive
+  # end
+# end
+
+# class Car
+  # include Drivable
+# end
+
+# 3.
+# class House
+  # include Comparable
+  # attr_reader :price
+
+  # def initialize(price)
+    # @price = price
+  # end
+  
+  # def <=>(other)
+    # price <=> other.price
+  # end
+  
+# end
+
+# 4.
+# class Transform
+  # attr_accessor :transformed
+
+  # def initialize(str)
+    # @transformed = str
+  # end
+  
+  # def uppercase
+    # transformed.upcase
+  # end
+  
+  # def self.lowercase(str)
+    # str.downcase
+  # end
+  
+# end
+
+# 6.
+# class Wallet
+  # include Comparable
+
+  # def initialize(amount)
+    # @amount = amount
+  # end
+  
+  # def <=>(other_wallet)
+    # amount <=> other_wallet.amount
+  # end  
+  
+  # protected
+  
+  # attr_accessor :amount
+  
+# end
+
+# 7.
+# def indefinite_article(word)
+  # ["a", "e", "i", "o", "u"].include?(word[0].downcase) ? "an" : "a"
+# end
+
+# class Shelter
+  # attr_accessor :adoptions, :owners, :pets
+  
+  # def initialize(pets)
+    # @owners = []
+    # @adoptions = []
+    # @pets = pets 
+  # end
+  
+  # def adopt(person, pet)
+    # unless owners.include?(person)
+      # owners << person
+    # end
+    # person.adopt(pet)
+  # end
+
+  # def print_pets
+    # puts "The Animal Shelter has the following unadopted pets:"
+    # pets.each do |pet|
+      # puts "#{pet}"
+    # end
+    # puts "\n"
+  # end
+
+  # def print_adoptions
+    # owners.each do |owner|
+      # puts "#{owner.name} has adopted the following pets:"
+      # owner.pets.each do |pet|
+        # puts "#{pet}"
+      # end
+    # puts "\n"
+    # end
+    
+   # def number_of_pets
+     # pets.length
+   # end
+  
+  # end
+
+# end
+
+# class Pet
+  # attr_reader :name, :animal
+
+  # def initialize(animal, name)
+    # @animal = animal
+    # @name = name
+  # end
+  
+  # def to_s
+     # article = indefinite_article(self.animal)
+    # "#{article} #{self.animal} named #{self.name}"
+  # end
+
+# end
+
+# class Owner
+  # attr_reader :name
+  # attr_accessor :pets, :number_of_pets
+  
+  # def initialize(name)
+    # @name = name
+    # @pets = []
+    # @number_of_pets = 0
+
+  # def adopt(pet)
+    # pets << pet
+  # end
+  
+  # def number_of_pets
+    # pets.length
+  # end
+
+  # end
+
+# end
+
+# 9.
+# module Walkable
+  # def walk
+    # puts "#{name} #{self.gait} forward"
+  # end
+# end
+
+# class Person
+  # include Walkable
+  # attr_reader :name
+
+  # def initialize(name)
+    # @name = name
+  # end
+
+  # private
+
+  # def gait
+    # "strolls"
+  # end
+# end
+
+# omitted for brevity
+
+# 10.
+# module Walkable
+  # def walk
+    # puts "#{name} #{self.gait} forward"
+  # end
+# end
+
+# class Person
+  # include Walkable
+
+  # def initialize(name)
+    # @name = name
+  # end
+
+  # private
+
+  # def gait
+    # "strolls"
+  # end
+
+  # def name
+    # @name
+  # end
+  
+# end
+
+# class Noble < Person
+  # attr_reader :title, :first_name
+
+  # def initialize(first_name, title)
+    # @first_name = first_name
+    # @title = title
+  # end
+
+  # private
+  
+  # def name
+    # "#{title} #{first_name}"
+  # end
+  
+  # def gait
+    # "struts"
+  # end
+
+# end
+
+# omitted for brevity

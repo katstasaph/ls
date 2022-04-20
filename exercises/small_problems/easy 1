@@ -1,0 +1,89 @@
+# 1.
+# def repeat(text, amount)
+#   puts (text + "\n") * amount
+# end
+
+# 2.
+# def is_odd?(number)
+#   number % 2 != 0
+# end
+# or...
+# def is_odd?(number)
+#  number.remainder(2) != 0
+# end
+
+# 3. 
+# def get_digits(number)
+#   number = number.to_s
+#   digits = []
+#   i = 0
+#   while i < number.length
+#      digits << number[i].to_i
+#      i += 1
+#   end
+#   digits
+# end
+
+# 4.
+# def count_occurrences(arr)
+#   occurrences = {}
+#   arr.each do |entry| 
+#   entry = entry.downcase # Does not mutate the entry
+#     if occurrences.keys.include?(entry)
+#       occurrences[entry] += 1
+#     else
+#       occurrences.store(entry, 1) 
+#     end
+#   end
+#   occurrences
+# end
+
+# 5.
+# def reverse_sentence(string)
+#   words = string.split
+
+# end
+
+# 6. 
+# def reverse_sentence(string)
+#   words = string.split
+#   words.each do |word|
+#     if word.length > 4
+#       word.reverse!
+#     end
+#   end
+#   words.join(" ")
+# end
+
+# 7.
+def stringy(times, first = 1)
+#   output = ""
+#   last = first == 0 ? "1" : "0"
+#   first = first == 0 ? "0" : "1"
+#   counter = 0
+#   while counter < times
+#     output += counter.even? ? first : last
+#     counter += 1
+#   end
+#   puts output
+# end
+
+# 8.
+# def average(numbers)
+#   sum = 0
+#   numbers.each do |number|
+#     sum += number
+#   end
+#   sum.to_f / numbers.count
+# end
+
+# 9.
+# def sum(number)
+#   digits = number.to_s.chars.map { |a| a.to_i }
+#   digits.reduce(:+)
+# end
+
+# 10.
+# def calculate_bonus(salary, eligible)
+#    eligible ? salary/2 : 0
+# end

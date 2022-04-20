@@ -1,0 +1,79 @@
+# 1.
+# class Machine
+  # def start
+    # flip_switch(:on)
+  # end
+
+  # def stop
+    # flip_switch(:off)
+  # end
+  
+  # def switch
+  #   get_switch
+  # end
+
+  # private
+
+  # attr_accessor :switch
+
+  # def flip_switch(desired_state)
+    # self.switch = desired_state
+  # end
+  
+  # def get_switch
+  #   switch
+  # end
+# end
+
+# 2.
+# class FixedArray
+  # def initialize(num_elements)
+    # @arr = Array.new(num_elements)
+    # @max_size = num_elements
+  # end
+  
+  # def [](element)
+    # arr.fetch(element)
+  # end
+
+  # def []=(element, new_val)
+    # self[element]
+    # arr[element] = new_val
+  # end
+
+  # def to_a
+    # arr.clone
+  # end
+  
+  # def to_s
+    # arr.to_s
+  # end
+
+  # private
+  
+  # attr_accessor :arr, :max_size
+
+# end
+
+# 3.
+# class Student
+  # def initialize(name, year)
+    # @name = name
+    # @year = year
+  # end
+# end
+
+# class Graduate < Student
+  # def initialize(name, year, parking)
+    # @parking = parking
+    # super(name, year)
+  # end
+# end
+
+# defining initialize here is redundant technically; instructions specified only alter 5 lines of code max
+
+# class Undergraduate < Student
+  # def initialize(name, year)
+    # super
+  # end
+# end

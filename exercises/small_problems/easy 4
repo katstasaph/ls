@@ -1,0 +1,198 @@
+# 1.
+# def short_long_short(str1, str2)
+#   str1.length < str2.length ? str1 + str2 + str1 : str2 + str1 + str2
+# end
+
+# 2.
+# SPECIAL_ORDINALS = [11, 12, 13]
+
+# SUFFIXES = {
+# 1 => "st",
+# 2 => "nd",
+# 3 => "rd",
+# }
+
+# def century(year)
+  # cent = year_to_century(year)
+  # century_to_string(cent)
+# end
+
+# def year_to_century(year)
+  # ((year - 1) / 100) + 1
+# end
+
+# def century_to_string(cent)
+  # cent.to_s + add_century_suffix(cent)
+# end
+
+# def add_century_suffix(cent)
+  # unless SPECIAL_ORDINALS.include?(cent % 100)
+    # SUFFIXES.each do |key, value| 
+      # if key == cent % 10
+        # return value
+      # end
+    # end
+  # end
+  # "th"
+# end
+
+# 3.
+# def leap_year?(year)
+  # if year < 1
+    # false
+  # elsif year % 100 == 0
+    # year % 400 == 0 
+  # else
+    # year % 4 == 0
+  # end
+# end
+
+# 4.
+# def leap_year?(year)
+  # if year < 1
+    # return false
+  # elsif year % 4 != 0
+    # return false
+  # elsif year >= 1752 && year % 100 == 0 && year % 400 != 0
+    # return false
+  # end
+  # true
+# end
+
+# 5.
+# def multisum(num)
+  # sum = 0
+  # i = 1
+  # while i <= num
+    # if i % 3 == 0 || i % 5 == 0
+      # sum += i
+    # end
+    # i += 1
+  # end
+  # sum
+# end
+
+# def multisum_with_inject(num)
+  # multiples = []
+  # i = 1
+  # while i <= num
+    # if i % 3 == 0 || i % 5 == 0
+      # multiples << i
+    # end
+    # i += 1 
+  # end
+  # multiples.inject(:+)
+# end
+
+# 6. 
+# def running_total(arr)
+  # sum = 0
+  # arr.map { |value| sum += value }
+# end
+
+# def running_total_2(arr)
+  # sum = 0
+  # arr.each_with_object([]) {|i, newarr| newarr << (sum += i) }
+# end
+
+# 7.
+# ASCII_ZERO = 48
+# ASCII_NINE = 57
+# DIGIT_OFFSET = 48
+
+# ASCII_A = 65
+# ASCII_F = 70
+# HEX_OFFSET = 55
+
+# def string_to_integer(str)
+  # ascii_chars = str.bytes.reverse
+  # i = 0
+  # num = 0
+  # ascii_chars.each do 
+    # if ascii_chars[i] >= ASCII_ZERO && ascii_chars[i] <= ASCII_NINE
+      # digit = ascii_chars[i] - DIGIT_OFFSET
+      # num += digit*(10**i)
+      # i += 1
+    # end
+  # end
+  # num
+# end
+
+# def hexadecimal_to_integer(str)
+  # ascii_chars = str.upcase.bytes.reverse
+  # i = 0
+  # num = 0
+  # ascii_chars.each do 
+    # digit = 0
+    # if ascii_chars[i] >= ASCII_ZERO && ascii_chars[i] <= ASCII_NINE
+      # digit = ascii_chars[i] - DIGIT_OFFSET
+    # elsif ascii_chars[i] >= ASCII_A && ascii_chars[i] <= ASCII_F
+      # digit = ascii_chars[i] - HEX_OFFSET
+    # end
+    # num += digit*(16**i)
+    # i += 1
+  # end
+  # num
+# end
+
+# 8.
+# ASCII_ZERO = 48
+# ASCII_NINE = 57
+# DIGIT_OFFSET = 48
+
+# ASCII_MINUS = 45
+# ASCII_PLUS = 43
+
+# def string_to_signed_integer(str)
+  # ascii_chars = str.bytes
+  # i = 0
+  # num = 0
+  # positive = true
+  # if ascii_chars[0] == ASCII_MINUS || ascii_chars[0] == ASCII_PLUS
+    # positive = ascii_chars[0] == ASCII_MINUS ? false : true
+    # ascii_chars.shift
+  # end
+  # ascii_chars = ascii_chars.reverse
+  # ascii_chars.each do 
+    # if ascii_chars[i] >= ASCII_ZERO && ascii_chars[i] <= ASCII_NINE
+      # digit = ascii_chars[i] - DIGIT_OFFSET
+      # num += digit*(10**i)
+      # i += 1
+    # end
+  # end
+  # positive == true ? num : -num
+# end
+
+# 9.
+# DIGIT_OFFSET = 48
+
+# def integer_to_string(num)
+  # digit = 1
+  # str = ""
+  # loop do
+    # digit = num % 10
+    # str += (digit + DIGIT_OFFSET).chr
+    # num /= 10
+    # break if num <= 0
+  # end
+  # str.reverse
+# end
+
+# 10.
+# DIGIT_OFFSET = 48
+
+# def signed_integer_to_string(num)
+  # digit = nil
+  # str = ""
+  # num_to_split = num.abs
+  # loop do
+    # digit = num_to_split % 10
+    # str += (digit + DIGIT_OFFSET).chr
+    # num_to_split /= 10
+    # break if num_to_split == 0
+  # end
+  # unless num == 0
+    # str += num > 0 ? "+" : "-"
+  # end
+  # str.reverse
+# end

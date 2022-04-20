@@ -117,7 +117,7 @@ class TodoList
   # ---- Outputting the list -----
 
   def to_s
-    "---- Today's Todos ----\n" + @todos.map { |todo| todo.to_s + "\n"}.join + "\n"
+    "---- Today's Todos ----\n" + @todos.map { |todo| todo.to_s + "\n"}.join
   end
   
 end

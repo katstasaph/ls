@@ -1,0 +1,113 @@
+# 1. 
+# puts "Pick a name."
+# name = gets.strip # We use strip here because whitespace characters still count toward string length...
+# name = name.length > 0 ? name : "Teddy" # ...so this would return true with "empty" input.
+# age = rand(20..200)
+# puts "#{name} is #{age} years old!"
+
+# 2.
+# SQFT_TO_SQIN = 144
+# SQFT_TO_SQCM = 929.03
+
+# puts "Enter the length of the room in feet:"
+# length = gets.strip.to_f
+# puts "Enter the width of the room in feet:"
+# width = gets.strip.to_f
+# sqft = length * width
+# sqin = sqft * SQFT_TO_SQIN
+# sqcm = (sqft * SQFT_TO_SQCM).round(2)
+# puts "The area of the room is:"
+# puts "  #{sqft} square feet"
+# puts "  #{sqin} square inches"
+# puts "  #{sqcm} square centimetrs"
+
+# 3.
+# def show_as_dollars(number)
+#   format("%.2f", number)
+# end
+
+# puts "What is the bill?"
+# bill = gets.strip.to_f
+# puts "What is the tip percentage?"
+# tip_percentage = gets.strip.to_f / 100
+# tip = bill * tip_percentage
+# puts "The tip is $#{show_as_dollars(tip)}."
+# puts "The total is $#{show_as_dollars(bill + tip)}."
+
+# 4.
+# puts "What is your age?"
+# age = gets.strip.to_i
+# puts "At what age would you like to retire?"
+# retirement_age = gets.strip.to_i
+# current_year = Time.now.year
+# years_left = retirement_age - age
+# retirement_year = current_year + years_left
+# puts "It's #{current_year}. You will retire in #{retirement_year}."
+# puts "You have only #{years_left} years of work to go!"
+
+# 5.
+# puts "What is your name?"
+# name = gets.chomp!
+# reply = name.end_with?("!") ? "HELLO #{name.upcase.chop!}. WHY ARE WE SCREAMING?" : "Hello #{name}." 
+# puts reply
+
+# 6.
+# i = 1
+# while i <= 99
+#   if i.odd? 
+#     puts i
+#   end
+#   i += 1
+# end
+
+# 7.
+# i = 1
+# while i <= 99
+#   if i.even? 
+#     puts i
+#   end
+#   i += 1
+# end
+
+# 8.
+# def sum_up_to(number)
+#   (1..number).inject(:+)  
+# end
+
+# def multiply_up_to(number)
+#   (1..number).inject(:*)  
+# end
+
+# def valid_positive_int?(input)
+#   input.to_i.to_s == input && input.to_i > 0
+# end
+
+# number = nil
+# operation = nil
+# puts ">> Please enter an integer greater than 0:"
+# loop do 
+#   number = gets.strip
+#   break if valid_positive_int?(number)
+#   puts ">> Please enter a valid positive integer."
+# end
+
+# puts ">> Enter 's' to compute the sum, 'p' to compute the product."
+# loop do 
+#   operation = gets.strip.downcase
+#   break if operation == "s" || operation == "p"
+#   puts ">> Please enter 's' for sum or 'p' for product."
+# end
+
+# if operation == "s"
+#   sum = sum_up_to(number.to_i)
+#   puts "The sum of the integers between 1 and #{number} is #{sum}."
+
+# elsif operation == "p"
+#   product = multiply_up_to(number.to_i)
+#   puts "The product of the integers between 1 and #{number} is #{product}."
+# end
+
+# 9. Both name and save_name will be "BOB" because the upcase! method mutates the string, which both name and save_name point to.
+
+# 10. The code will print array2, i.e., the contents of array1, with all names starting with C or S in all caps. 
+# Even though the upcase! method was called on array1, the changes will be reflected in array2, because array2 was populated with references to the objects in array1, and when those were mutated in array1 array2 also contains the changed values.

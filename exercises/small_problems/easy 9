@@ -1,0 +1,87 @@
+# 1.
+# def greetings(name, job)
+#   full_name = name.join(" ")
+#   full_job = job[:title] + " " + job[:occupation]
+#   "Hello, #{full_name}! Nice to have a #{full_job} around."
+# end
+
+# 2.
+# def twice(num)
+  # double?(num) ? num : num*2
+# end
+
+# def double?(num)
+  # num_string = num.to_s
+  # return false if num_string.length.odd?
+  # midpoint = (num_string.length) / 2
+  # num_string[0, midpoint] == num_string[-midpoint, midpoint]
+# end
+
+# 3.
+# def negative(num)
+#   num > 0 ? -num : num
+# end
+
+# 4.
+# def sequence(num)
+  # if num > 0
+    # (1..num).to_a
+  # elsif num < 0
+    # (num..-1).to_a
+  # else
+    # [0]
+  # end
+# end
+
+# 5.
+# def uppercase?(str)
+#   str.upcase == str
+# end
+
+# 6.
+# def word_lengths(str)
+#   str.split.map { |word| word + " " + word.length.to_s }
+# end
+
+# 7.
+# def swap_name(name)
+#   name.split(' ').reverse.join(', ')
+# end
+
+# 8.
+# def sequence(elements, multiplier)
+#   (1..elements).map { |num| num * multiplier }
+# end
+
+# 9.
+# GRADES = { (90..) => "A", (80..89) => "B", (70..79) => "C", (60..69) => "D", (0..59) => "F"  }
+
+# def get_grade(num1, num2, num3)
+#   grade = (num1 + num2 + num3) / 3
+#   GRADES.each { |band, letter| return letter if band.include?(grade) }
+# end
+
+# 10.
+# def buy_fruit(fruits)
+  # fruits.each_with_object([]) do |fruit, arr|
+    # fruit[1].times { arr << fruit[0] } 
+  # end
+# end
+
+# 11.
+# def anagrams(words)
+  # unique_sequences = get_unique_sequences(words)
+  # unique_sequences.map do |sequence|
+    # words.sort.each_with_object([]) do |word, arr|
+      # arr << word if sort_characters(word) == sequence
+    # end
+  # end
+# end
+
+# def get_unique_sequences(words)
+  # words.map { |word| sort_characters(word) }.uniq
+# end
+
+# def sort_characters(word)
+  # word.chars.sort.join
+# end

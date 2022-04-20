@@ -1,0 +1,128 @@
+# 1.
+# def sum_of_sums(nums)
+#   sum = 0
+#   nums.each_with_index { |num, i| sum += (num * (nums.length - i)) }
+#   sum
+# end
+
+# 2.
+# puts "Enter a noun:"
+# noun = gets.chomp
+# puts "Enter a verb (past tense):"
+# verb = gets.chomp
+# puts "Enter an adjective:"
+# adj = gets.chomp
+# puts "Enter an adverb:"
+# adv = gets.chomp
+
+# puts "In the beginning the #{noun} was #{verb}. This has made a lot of people very #{adj} and has been #{adv} regarded as a bad move."
+
+# 3.
+# def leading_substrings(str)
+  # all_chars = str.chars
+  # substrings = []
+  # substring_to_add = ""
+  # all_chars.each do |chr|
+    # substring_to_add += chr
+    # substrings << substring_to_add
+  # end
+  # substrings
+# end
+
+# 4.
+# def substrings(str)
+  # substrings = []
+  # length_to_slice = str.length
+  # str.length.times do 
+    # substrings << leading_substrings(str.slice(-length_to_slice, length_to_slice))
+    # length_to_slice -= 1
+  # end
+  # substrings.flatten
+# end
+
+# def leading_substrings(str)
+  # all_chars = str.chars
+  # substrings = []
+  # substring_to_add = ""
+  # all_chars.each do |chr|
+    # substring_to_add += chr
+    # substrings << substring_to_add
+  # end
+  # substrings
+# end
+
+# 5.
+# def palindromes(str)
+  # substrings(str).select do |substr| 
+    # str_to_check = filter_string(substr)
+    # str_to_check.length > 1 && str_to_check == str_to_check.reverse
+  # end
+# end
+
+# def filter_string(str)
+  # str.downcase.chars.select { |chr| ('a'..'z').include?(chr) }.join
+# end
+
+# def substrings(str)
+  # substrings = []
+  # length_to_slice = str.length
+  # str.length.times do 
+    # substrings << leading_substrings(str.slice(-length_to_slice, length_to_slice))
+    # length_to_slice -= 1
+  # end
+  # substrings.flatten
+# end
+
+# def leading_substrings(str)
+  # all_chars = str.chars
+  # substrings = []
+  # substring_to_add = ""
+  # all_chars.each do |chr|
+    # substring_to_add += chr
+    # substrings << substring_to_add
+  # end
+  # substrings
+# end
+
+# 6.
+# def fizzbuzz(num1, num2)
+  # i = 0
+  # num2.times do
+    # i += 1
+    # text_to_print = ""
+    # text_to_print += "Fizz" if i % 3 == 0
+    # text_to_print += "Buzz" if i % 5 == 0
+    # text_to_print += i.to_s if text_to_print.length == 0
+    # text_to_print += ", " if i != num2
+    # print text_to_print
+  # end
+  # print "\n"
+# end
+
+# 7.
+# def repeater(str)
+#   str.chars.zip(str.chars).join
+# end
+
+# 8.
+# CONSONANTS = ('a'..'z').reject { |chr| "aeiou".include?(chr) }
+
+# def double_consonants(str)
+  # chars_to_double = str.chars.map do |chr| 
+    # CONSONANTS.include?(chr.downcase) ? chr : ""
+  # end
+  # str.chars.zip(chars_to_double).join
+# end
+
+# 9.
+# def reversed_number(num)
+#   num.to_s.reverse.to_i
+# end
+
+# 10.
+# def center_of(str)
+  # return "" if str.length == 0
+  # chars = str.chars
+  # midpoint = (str.length - 1)/2
+  # str.length.odd? ? chars[midpoint] : chars[midpoint] + chars[midpoint + 1]
+# end

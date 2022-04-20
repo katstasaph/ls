@@ -1,0 +1,189 @@
+# 1.
+# def rotate_array(arr)
+  # arr.drop(1).push(arr[0])
+# end
+
+# def rotate_string(str)
+  # rotate_array(str.chars).join
+# end
+
+# def rotate_number(num)
+  # rotate_array(num.digits.reverse).join.to_i
+# end
+
+# 2.
+# def rotate_rightmost_digits(num, digits)
+#   digits_to_rotate = num.digits.take(digits).reverse
+#   digits_to_keep = num.digits.reverse - digits_to_rotate
+#   (digits_to_keep + rotate_array(digits_to_rotate)).join.to_i
+# end
+
+# 3.
+# def max_rotation(num)
+  # i = num.to_s.length
+  # while i >= 2
+    # num = rotate_rightmost_digits(num, i)
+    # i -= 1
+  # end
+  # num
+# end
+
+# 4.
+# LIGHT_ON = true
+# LIGHT_OFF = false
+
+# def toggle_lights(total)
+  # status = initialize_lights(status, total)
+  # (1..total).each do |round|
+    # step_count = round
+    # while step_count <= total
+      # status[step_count] = toggle_switch!(status, step_count)
+      # step_count += round
+    # end
+  # end
+  # get_on_switches(status)
+# end
+
+# def initialize_lights(switches, total)
+  # (1..total).each_with_object({}) { |switch, status| status[switch] = LIGHT_OFF }
+# end
+
+# def toggle_switch!(switches, switch)
+  # !switches[switch]
+# end
+
+# def get_on_switches(switches)
+  # switches.keys.each_with_object([]) { |switch, lights| lights << switch if switches[switch] == LIGHT_ON }  
+# end
+
+# 5.
+# def diamond(total_rows)
+  # rows = build_row_pattern(total_rows)
+  # rows.each { |row| puts stars(row, total_rows) }
+# end
+
+# def diamond_outline(total_rows)
+  # rows = build_row_pattern(total_rows)
+  # rows.each { |row| puts star_outline(row, total_rows) }
+# end
+
+# def build_row_pattern(rows)
+  # return [1] if rows == 1
+  # pattern = []
+  # i = 1
+  # while i < rows
+    # pattern << i
+    # i += 2
+  # end
+  # pattern + [rows] + pattern.reverse
+# end
+
+# def stars(row, total_rows)
+  # whitespace = " " * ((total_rows - row) / 2)
+  # stars = "*" * row
+  # whitespace + stars + whitespace
+# end
+
+# def star_outline(row, total_rows)
+  # grid = stars(row, total_rows).chars # rhyme inot intended
+  # first_star = grid.index("*")
+  # total_stars = grid.count("*")
+  # outline = grid.each_with_index.map do |point, i|
+    # if i <= first_star || i >= (first_star + total_stars - 1)
+      # point
+    # else
+      # " "
+    # end  
+  # end
+  # outline.join
+# end
+
+# 6.
+# VALID_COMMANDS = ["ADD", "DIV", "MOD", "MULT", "POP", "PRINT", "PUSH", "SUB"]
+# REQUIRES_STACK =  ["ADD", "DIV", "MOD", "MULT", "POP", "SUB"]
+
+# def minilang(commands)
+  # stack = []
+  # register = 0
+  # commands.split.each do |command|
+    # if invalid_command?(command) then return "Invalid command. Stack: #{stack}; register: #{register}." end
+    # if stack_error?(command, stack) then return "Attempted to pop from empty stack; register: #{register}." end
+    # if is_integer?(command) then register = command.to_i end
+    # case command
+    # when "ADD"   then      register += stack.pop
+    # when "DIV"   then      register /= stack.pop
+    # when "MOD"   then      register = register % stack.pop
+    # when "MULT"  then      register *= stack.pop
+    # when "POP"   then      register = stack.pop
+    # when "PRINT" then      p register
+    # when "PUSH"  then      stack.push(register)     
+    # when "SUB"   then      register -= stack.pop
+    # end
+  # end
+  # nil
+# end
+
+# def is_integer?(str)
+  # str.to_i.to_s == str
+# end
+
+# def invalid_command?(input)
+  # !(is_integer?(input) || VALID_COMMANDS.include?(input))
+# end
+
+# def stack_error?(input, stack)
+  # REQUIRES_STACK.include?(input) && stack.length == 0
+# end
+
+# 7.
+# DIGIT_WORDS = {
+  # "zero" => "0",
+  # "one" => "1",
+  # "two" => "2",
+  # "three" => "3",
+  # "four" => "4",
+  # "five" => "5",
+  # "six" => "6",
+  # "seven" => "7",
+  # "eight" => "8",
+  # "nine" => "9"
+  # }
+
+# def word_to_digit(str)
+  # words = str.split
+  # str.split.each_with_index do |word, i|
+    # cleaned_word = word.downcase.gsub(/[^a-z0-9]/, '')
+    # if DIGIT_WORDS.key?(cleaned_word)
+      # swapped_word = word.gsub(cleaned_word, DIGIT_WORDS[cleaned_word])
+      # words[i] = swapped_word
+    # end
+  # end
+  # words.join(" ")
+# end
+
+# 8.
+# def fibonacci(index)
+#   return 1 if index <= 2
+#   fibonacci(index - 1) + fibonacci(index - 2)
+# end
+
+# 9.
+# def fibonacci(index)
+  # fibonacci_nums = [1, 1]
+  # place = 0
+  # while (fibonacci_nums.length < index)
+    # fibonacci_nums.push(fibonacci_nums[place] + fibonacci_nums[place+1])
+    # place += 1
+  # end
+  # return fibonacci_nums.last
+# end
+
+# 10.
+# def fibonacci_last(index)
+  # last_2 = [1, 1]
+  # 3.upto(index) do
+    # last_2 = [last_2.last, (last_2.first + last_2.last) % 10]
+  # end
+
+  # last_2.last
+# end

@@ -1,0 +1,128 @@
+# 1. 
+# def ascii_value(str)
+  # sum = str.bytes.inject(:+)
+  # sum == nil ? 0 : sum
+# end
+
+# 2.
+# DAY_PERIOD = 1440
+# MINUTES_IN_HOUR = 60
+
+# def time_of_day(minutes_offset)
+#   minutes = convert_to_periodic_range(minutes_offset, DAY_PERIOD)
+#   format_time(minutes)
+# end
+
+# def convert_to_periodic_range(num, period)
+#   positive = num > 0
+#   loop do
+#     if num >= 0 && num < period
+#       break
+#     end
+#   positive ? num -= period : num += period
+#   end 
+#   num
+# end
+
+# def format_time(num)
+#   hours, minutes = num.divmod(MINUTES_IN_HOUR)
+#   hours = format("%02d", hours)
+#   format('%02d:%02d', hours, minutes)
+# end
+
+# 3.
+# DAY_PERIOD = 1440
+# MINUTES_IN_HOUR = 60
+
+# def convert_to_periodic_range(num, period)
+  # positive = num > 0
+  # loop do
+    # if num >= 0 && num < period
+      # break
+    # end
+  # positive ? num -= period : num += period
+  # end  
+  # num
+# end
+
+# def extract_digits(str)
+  # [str[0..1].to_i, str[3..4].to_i]
+# end
+
+# def time_to_minutes(hours, minutes)
+  # total_minutes = (hours*MINUTES_IN_HOUR + minutes)
+  # convert_to_periodic_range(total_minutes, DAY_PERIOD)
+# end
+
+# def after_midnight(str)
+  # hours, minutes = extract_digits(str)
+  # time_to_minutes(hours, minutes)
+# end
+
+# def before_midnight(str)
+  # hours, minutes = extract_digits(str)
+  # time_to_minutes(-hours, -minutes)
+# end
+
+# 4.
+# def swap_letters(word)
+   # word[0], word[-1] = word[-1], word[0]
+   # word
+# end
+
+# def swap(str)
+  # words = str.split.map do  |word|
+    # swap_letters(word)
+  # end
+  # words.join(" ")
+# end
+
+# 5.
+# def cleanup(str)
+#   str.gsub(/[^a-z]/, " ").gsub(/[ ]+/, " ")
+# end
+
+# 6. 
+# def word_sizes(str)
+  # counts = Hash.new(0)
+  # words = str.split
+  # words.each do |word|
+    # counts[word.size] += 1
+  # end
+  # counts
+# end
+
+# 7.
+# def word_sizes(str)
+  # counts = Hash.new(0)
+  # words = str.split
+  # words.each do |word|
+    # cleaned_word = word.gsub(/[^a-zA-Z]/, "")
+    # counts[cleaned_word.size] += 1
+  # end
+  # counts
+# end
+
+# 8.
+# ENGLISH_NUMS = {0 => "zero", 1 => "one", 2 => "two", 3 => "three", 4 => "four", 
+                             # 5 => "five",  6 => "six", 7 => "seven", 8 => "eight", 9 => "nine", 10 => "ten", 
+                             # 11 => "eleven", 12 => "twelve", 13 => "thirteen", 14 => "fourteen", 15 => "fifteen",
+                             # 16 => "sixteen", 17 => "seventeen", 18 => "eighteen", 19 => "nineteen" }
+                             
+ # def alphabetic_number_sort(numbers)
+  # numbers.sort { |num1, num2|  ENGLISH_NUMS[num1] <=> ENGLISH_NUMS[num2] }
+ # end
+ 
+# 9.
+# def crunch(str)
+  # i = 0
+  # characters = str.chars
+  # while i < characters.length - 1
+    # if (characters[i] == characters[i+1])
+      # characters.delete_at(i+1)
+    # else
+      # i += 1
+    # end
+  # end
+  # characters.join
+# end

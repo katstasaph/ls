@@ -1,0 +1,108 @@
+# 1.
+# def interleave(arr1, arr2)
+#   arr1.zip(arr2).flatten
+# end
+
+# 2.
+# UPPERCASE_CHARS = ('A'..'Z').to_a
+# LOWERCASE_CHARS = ('a'..'z').to_a
+
+# def letter_case_count(str)
+  # case_count = {lowercase: 0, uppercase: 0, neither: 0}
+  # string_chars = str.chars
+  # string_chars.each do |chr|
+    # if LOWERCASE_CHARS.include?(chr)
+      # case_count[:lowercase] += 1
+    # elsif UPPERCASE_CHARS.include?(chr)
+      # case_count[:uppercase] += 1
+    # else
+      # case_count[:neither] += 1
+    # end
+  # end
+  # case_count
+# end
+
+# 3.
+# def word_cap(str)
+#   str.split.map(&:capitalize).join(" ")
+# end
+
+# 4.
+# CAPITAL_LETTERS = ('A'..'Z').to_a
+# LOWERCASE_LETTERS = ('a'..'z').to_a
+
+# def swapcase(str)
+  # newstr = str.chars.map do |chr|
+    # case
+    # when CAPITAL_LETTERS.include?(chr)
+      # LOWERCASE_LETTERS[CAPITAL_LETTERS.index(chr)]
+    # when LOWERCASE_LETTERS.include?(chr)
+      # CAPITAL_LETTERS[LOWERCASE_LETTERS.index(chr)]
+    # else
+      # chr
+    # end
+  # end
+  # newstr.join
+# end
+
+# 5.
+# def staggered_case(str, cap_first = true)
+  # i = cap_first ? 0 : 1
+  # newstr = str.downcase.chars.map do |chr|
+    # i += 1
+    # if ('a'..'z').include?(chr) && i.odd?
+      # chr.upcase
+    # else
+      # chr
+    # end
+  # end
+  # newstr.join
+# end
+
+# 6.
+# def staggered_case(str, include_nonletters = false)
+  # cap_char = true
+  # newstr = []
+  # str.downcase.chars.each do |chr|
+    # char_to_add = chr
+    # if ('a'..'z').include?(chr) || include_nonletters
+      # char_to_add = chr.upcase if cap_char
+      # cap_char = !cap_char
+    # end
+    # newstr << char_to_add
+  # end
+  # newstr.join
+# end
+
+# 7.
+# def show_multiplicative_average(arr)
+#   average = arr.inject(:*).to_f / arr.length.to_f
+#   puts "The result is #{format("%.3f", average)}"
+# end
+
+# 8.
+# def multiply_list(list1, list2)
+#   list1.zip(list2).map { |newlist| newlist.inject(:*) }
+# end
+
+# 9.
+# def multiply_all_pairs(arr1, arr2)
+  # newarr = arr1.each_with_object([]) do |num, a| 
+    # a << arr2.map { |num2| num*num2 }
+  # end
+  # newarr.flatten.sort
+# end
+
+# 10.
+
+# def penultimate(str)
+#   words = str.split
+#   words[-2]
+# end
+
+# def middle_word(str)
+  # return "" if str.length == 0
+  # words = str.split
+  # midpoint = (words.size - 1)/2
+  # words.size.odd? ? words[midpoint] : words[midpoint] + " " + words[midpoint + 1]
+# end

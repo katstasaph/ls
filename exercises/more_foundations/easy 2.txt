@@ -1,0 +1,71 @@
+# 1. 
+# def step(first, last, interval)
+  # counter = first
+  # while counter <= last
+    # yield(counter)
+    # counter += interval
+  # end
+# end
+
+# 2.
+# (assume arrays have equal # of elements)
+# def zip(arr1, arr2)
+  # newarr = []
+  # arr1.each_with_index do |element, i| 
+    # newarr << [element, arr2[i]]
+  # end
+  # newarr
+# end
+
+# 3.
+# def map(arr)
+  # arr.each_with_object([]) do |element, newarr|
+    # newarr << yield(element)
+  # end
+# end
+
+# 4.
+# def count(*elements)
+  # elements.inject(0) do |sum, element|
+    # sum += block_given? && yield(element) ? 1 : 0
+  # end
+# end
+
+# 5.
+# def drop_while(arr)
+  # newarr = arr.dup
+  # arr.each do |element|
+    # break unless yield(element)
+    # newarr.shift
+  # end
+  # newarr
+# end
+
+# 6.
+# def each_with_index(arr)
+  # i = 0
+  # arr.each do |element|
+    # yield(element, i)
+    # i += 1
+  # end
+# end
+
+# 7.
+# def each_with_object(arr, newobj)
+#   arr.each { |element| yield(element, newobj) }
+#   newobj
+# end
+
+# 8.
+# def max_by(arr)
+  # return nil if arr == []
+  # max_index = 0
+  # current_max = yield(arr[max_index])
+  # arr.each_with_index do |element, i|
+    # if yield(element) > current_max
+      # max_index = i
+      # current_max = yield(arr[max_index])    
+    # end
+  # end
+  # arr[max_index]
+# end
