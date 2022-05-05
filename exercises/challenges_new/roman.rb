@@ -10,7 +10,7 @@ class RomanNumeral
 
   def to_roman
     roman_str = ""
-    digit_arr = digits(number)
+    digit_arr = number.digits.reverse
     digit_arr.each_with_index do |digit, idx|
       place = digit_arr.length - idx
       roman_str += roman(digit, place)
@@ -19,18 +19,7 @@ class RomanNumeral
   end
 
   private
-  
-  def digits(num)
-    digit_arr = []
-    idx = (num.to_s.length) - 1
-    while idx >= 0
-      digit, num = num.divmod(10**idx)
-      digit_arr << digit
-      idx -= 1
-    end
-    digit_arr
-  end
-  
+ 
   def roman(digit, place)
     return ("M" * digit) if place == 4
     first = first_letter(place)
