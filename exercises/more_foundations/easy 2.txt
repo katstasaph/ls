@@ -69,3 +69,21 @@
   # end
   # arr[max_index]
 # end
+
+# 9.
+# def each_cons(arr)
+  # arr.each_with_index do |item, index|
+    # break if index + 1 >= arr.length
+    # yield(item, arr[index + 1])
+  # end
+  # nil
+# end
+
+# 10.
+# def each_cons(arr, amount)
+  # arr.each_index do |index|
+    # break if index + amount - 1 >= arr.length
+    # yield(*arr[index..(index + amount - 1)])
+  # end
+  # nil
+# end

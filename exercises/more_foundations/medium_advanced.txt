@@ -1,0 +1,214 @@
+# 1.
+# class Device
+  # attr_accessor :recordings
+  # def initialize
+    # @recordings = []
+  # end
+
+  # def record(recording)
+    # @recordings << recording
+  # end
+  
+  # def listen
+    # if block_given?
+      # record(yield)
+    # end
+  # end
+    
+  # def play
+    # puts recordings.last
+  # end
+# end
+
+# listener = Device.new
+# listener.listen { "Hello World!" }
+# listener.listen
+# listener.play # Outputs "Hello World!"
+
+# 2.
+# class TextAnalyzer
+  def process
+    text = File.open("sample.txt", "r")
+    yield(text.read)
+    text.close
+  end
+end
+
+analyzer = TextAnalyzer.new
+analyzer.process { |text| p "#{text.split("\n\n").length} paragraphs" }
+analyzer.process { |text| p "#{text.split("\n").length} lines" }
+analyzer.process { |text| p "#{text.split.length} words" }
+
+# 3.
+# items = ['apples', 'corn', 'cabbage', 'wheat']
+
+# def gather(items)
+  # puts "Let's start gathering food."
+  # yield(items)
+  # puts "Nice selection of food we have gathered!"
+# end
+
+# gather(items) { |list| puts list.join(", ")}
+
+# 4.
+# def raptor_method(arr)
+  # yield(arr)
+# end
+
+# test_arr = ["raven", "finch", "hawk", "eagle"]
+# test = raptor_method(test_arr) do |birds|
+  # _, _, *raptors = birds
+  # raptors
+# end
+
+# p test
+
+# 5.
+# items = ['apples', 'corn', 'cabbage', 'wheat']
+
+# def gather(items)
+  # puts "Let's start gathering food."
+  # yield(items)
+  # puts "We've finished gathering!"
+# end
+
+# # 5a
+
+# gather(items) do | *all_but_last, last |
+  # puts all_but_last.join(", ")
+  # puts last
+# end
+
+# puts "\n"
+
+# # 5b
+
+# gather(items) do | first, *until_last, last |
+  # puts first
+  # puts until_last.join(", ")
+  # puts last
+# end
+
+# puts "\n"
+
+# # 5c
+
+# gather(items) do | first, *rest |
+  # puts first
+  # puts rest.join(", ")
+# end
+
+# puts "\n"
+
+# # 5d
+
+# gather(items) do | first, second, third, fourth |
+  # puts "#{first}, #{second}, #{third}, 
+# end
+
+
+# 6.
+# def convert_to_base_8(n)
+  # n.to_s(8).to_i 
+# end
+
+# base8_proc = method(:convert_to_base_8).to_proc
+
+# p [8, 10, 12, 14, 16, 33].map(&base8_proc)
+
+# 7. 
+# def bubble_sort!(array)
+  # loop do
+    # swapped = false
+    # 1.upto(array.size - 1) do |index|
+      # next if (block_given? && yield(array[index - 1], array[index])) || (!block_given? && array[index - 1] <= array[index])
+      # array[index - 1], array[index] = array[index], array[index - 1]
+      # swapped = true
+    # end
+
+    # break unless swapped
+  # end
+  # nil
+# end
+
+# def bubble_sort_one_argument!(array)
+  # loop do
+    # swapped = false
+    # 1.upto(array.size - 1) do |index|
+      # array[index]
+      # next if (block_given? && yield(array[index - 1]) <= yield(array[index])) || (!block_given? && yield(array[index - 1]) <= yield(array[index]))
+      # array[index - 1], array[index] = array[index], array[index - 1]
+      # swapped = true
+    # end
+
+    # break unless swapped
+  # end
+  # nil
+# end
+
+# #
+
+# 1. 
+# factorial = Enumerator.new do |num|
+  # idx = 1
+  # product = 1
+  # loop do
+    # num << product
+    # product *= idx
+    # idx += 1
+  # end
+# end
+
+# # external iteration
+
+# 6.times { |number| puts "#{number}! == #{factorial.next}" }
+# puts "\n"
+# factorial.rewind
+
+# # internal iteration
+
+# factorial.each_with_index do |value, number|
+  # puts "#{number}! == #{value}"
+  # break if number >= 5
+# end
+
+# 2.
+# # procs:
+
+# my_proc = proc { |thing| puts "This is a #{thing}." }
+# puts my_proc
+# puts my_proc.class # proc creates an instance of the Proc class
+# my_proc.call # procs do not enforce strict arity so this will work; the value of thing will be nil
+# my_proc.call('cat') # as will this
+
+# # lambdas:
+
+# my_lambda = lambda { |thing| puts "This is a #{thing}." }
+# my_second_lambda = -> (thing) { puts "This is a #{thing}." } # -> is another way of creating a lambda
+# puts my_lambda
+# puts my_second_lambda
+# puts my_lambda.class # we see here lambdas are a kind of Proc object
+# my_lambda.call('dog')
+# # lambdas enforce arity so the following will throw an exception: my_lambda.call
+# # there is no Lambda class so the following will throw an exception: my_third_lambda = Lambda.new { |thing| puts "This is a #{thing}." }
+
+# # blocks:
+
+# def block_method_1(animal)
+  # yield
+# end
+
+# block_method_1('seal') { |seal| puts "This is a #{seal}."} # we have not passed any argument when yielding to this block, but blocks do not enforce strict arity; this will work but "seal" will not be passed, nil will be assigned to seal
+# # yield requires a block given to yield to so the following will throw an exception: block_method_1('seal')
+
+# # blocks again:
+
+# def block_method_2(animal)
+  # yield(animal)
+# end
+
+# block_method_2('turtle') { |turtle| puts "This is a #{turtle}."}
+# block_method_2('turtle') do |turtle, seal|
+  # puts "This is a #{turtle} and a #{seal}." # as above blocks do not enforce strict arity, so nil will be assigned to seal
+# end
+# # we have not specified a block parameter "animal", so this will raise an exception as no "animal" variable exists in the block's scope: block_method_2('turtle') { puts "This is a #{animal}."} 
