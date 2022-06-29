@@ -43,6 +43,7 @@ end
 
 get "/users/:name" do
   @username = params[:name]
+  redirect "/" unless @names.include?(@username.capitalize)
   data = USER_DATA[@username.to_sym]
   @email = data[:email]
   @interests = join_with_comma(data[:interests])
