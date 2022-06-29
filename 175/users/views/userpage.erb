@@ -1,0 +1,19 @@
+<h2>User: <%= @username %></h2>
+
+<p><strong>Email:</strong> <%= @email %></p>
+<p><strong>Interests:</strong> <%= @interests %></p>
+
+<div class="bottom_menu">
+  <p>See user:</p>
+  <p>
+    <% @other_users.each do |name| %>
+      <span class="divider">|</span> <a href="/users/<%= name.downcase %>" class="user_link"><%= name %></a>
+    <% end %>  
+    <span class="divider">|</span> 
+    </p>
+</div>
+
+<div class="bottom_menu">
+    <a href="/">Home</a>
+</div>
+

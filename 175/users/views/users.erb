@@ -1,0 +1,7 @@
+<h2 class="content-subhead">Current users:</h2>
+
+<% @names.each do |name| %>
+  <p><a href="/users/<%= name.downcase %>" class="user_link"><%= name %></a></p>
+<% end %>  
+
+<p class="bottom_menu">There are currently <%= @total_users %> users with a total of <%= @total_interests %> interests.</p>
